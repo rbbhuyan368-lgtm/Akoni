@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Craft & Philosophy | Akaoni 赤鬼 Carmel-by-the-Sea</title>
+  <meta name="description" content="Discover the philosophy, master craftsmanship, and Edomae traditions behind Akaoni (赤鬼) in Carmel-by-the-Sea, California.">
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👹</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Noto+Serif+JP:wght@400;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="tuna" class="light-subpage">
+  <div class="ambient-glow" id="ambientGlow"></div>
+
+  <!-- HEADER -->
+  <header class="site-header scrolled" id="siteHeader">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="hanko-seal">赤<br>鬼</div>
+        <div class="brand-names">
+          <span class="brand-en">AKAONI</span>
+          <span class="brand-sub">CARMEL-BY-THE-SEA • 鮨</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="menu.html" class="nav-link">Menu & Dishes</a>
+        <a href="philosophy.html" class="nav-link active">Craft & Philosophy</a>
+        <a href="reserve.html" class="nav-link">Reservations</a>
+        <a href="location.html" class="nav-link">Location & Hours</a>
+      </nav>
+
+      <div class="header-actions">
+
+
+        <button class="cart-btn" id="cartOpenBtn" title="View Selected Items">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-badge" id="cartCountBadge">0</span>
+        </button>
+
+        <a href="reserve.html" class="btn btn-primary reserve-cta-btn">
+          <span>Book Table</span>
+        </a>
+
+        <button class="mobile-toggle-btn" id="mobileMenuToggle" aria-label="Open Navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE DRAWER -->
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div class="mobile-nav-header">
+      <div class="brand-names">
+        <span class="brand-en">AKAONI 赤鬼</span>
+        <span class="brand-sub">CARMEL-BY-THE-SEA</span>
+      </div>
+      <button class="close-btn" id="mobileNavCloseBtn">&times;</button>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-link">Home</a>
+      <a href="menu.html" class="mobile-link">Menu & Food Items</a>
+      <a href="philosophy.html" class="mobile-link active">Chef & Craft</a>
+      <a href="reserve.html" class="mobile-link">Book a Table</a>
+      <a href="location.html" class="mobile-link">Location & Hours</a>
+    </div>
+    <div class="mobile-nav-footer">
+      <a href="reserve.html" class="btn btn-primary full-width">Book Table at Akaoni</a>
+      <div class="mobile-contact-pill">📞 (831) 620-1516 • 6th Ave, Carmel</div>
+    </div>
+  </div>
+
+  <main>
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="page-hero-container">
+        <div class="page-badge">
+          <span>職人技 • THE ARTISANAL SPIRIT</span>
+        </div>
+        <h1 class="page-title">The Spirit of Akaoni (赤鬼)</h1>
+        <p class="page-subtitle">
+          In Japanese folklore, the Red Demon (Akaoni) embodies fierce devotion, unrelenting passion, and steadfast protection. In our Carmel sanctuary, that same spirit guards the authenticity of pure Japanese gastronomy.
+        </p>
+      </div>
+    </section>
+
+    <!-- CHEF AT WORK SHOWCASE -->
+    <section class="philosophy-section">
+      <div class="section-container">
+        <div class="philosophy-banner-visual">
+          <img src="./images/chef_craft.jpg" alt="Master Sushi Chef Sato at Akaoni Hinoki Counter">
+        </div>
+
+        <div class="section-header">
+          <div class="section-subtitle">
+            <span class="kanji-accent">一筋</span>
+            <span>UNCOMPROMISING DEDICATION</span>
+          </div>
+          <h2 class="section-title">The Four Pillars of Our Sanctuary</h2>
+          <p class="section-description">
+            We do not compromise. There are no fusion trends or shortcuts here—only pure respect for fish, fire, grain, and vinegar.
+          </p>
+        </div>
+
+        <!-- 3 Pillars Grid -->
+        <div class="craft-pillars-grid">
+          <div class="pillar-item">
+            <span class="pillar-kanji">赤酢</span>
+            <h4>Artisanal Akazu Rice</h4>
+            <p>
+              Sushi rice is seasoned exclusively with <em>Akazu</em>—traditional Japanese red vinegar aged for over 3 years from pure sake lees (sakasu). It lends a gentle natural warmth, amber tone, and amino-acid richness that matches the natural fats of Bluefin Otoro and King Salmon.
+            </p>
+          </div>
+
+          <div class="pillar-item">
+            <span class="pillar-kanji">豊洲</span>
+            <h4>Toyosu Direct Air-Freight</h4>
+            <p>
+              At 4:00 AM Tokyo time, our partner auctioneers at Toyosu Fish Market hand-select prime cuts of Otoro, Uni from Hokkaido, and Shima Aji. By nightfall, they arrive fresh in Monterey County to be cured, aged, or seared with precision.
+            </p>
+          </div>
+
+          <div class="pillar-item">
+            <span class="pillar-kanji">備長炭</span>
+            <h4>Kishu Binchotan Embers</h4>
+            <p>
+              Our Robata skewers and aburi torched nigiri use 100% authentic Kishu Binchotan white oak charcoal. Burning smokelessly at nearly 1,000°C, it seals in the juices of A5 Miyazaki Wagyu and eel in seconds, leaving an unmistakable aroma of sweet oak embers.
+            </p>
+          </div>
+        </div>
+
+        <!-- Culinary Philosophy Text & Quote -->
+        <div class="philosophy-grid mt-3">
+          <div class="philosophy-text">
+            <div class="section-subtitle">
+              <span class="kanji-accent">一期一会</span>
+              <span>TREASURING EACH ENCOUNTER</span>
+            </div>
+            <h2 class="section-title">An Intimate 20-Seat Sanctuary</h2>
+            <p>
+              Walking into Akaoni feels like stepping off the foggy coastal avenues of Carmel into an intimate Kyoto alley. With only 20 seats, there is no rush, no loud clamor, and no generic conveyor belts.
+            </p>
+            <p>
+              Every piece of nigiri is handed directly to you from the master’s cutting board at body temperature. We ask guests to eat each piece within seconds of receiving it, while the contrast between chilled fish and warm akazu rice remains sublime.
+            </p>
+            <div class="hero-actions mt-2">
+              <a href="reserve.html" class="btn btn-primary btn-lg">Reserve Counter Seat</a>
+              <a href="menu.html" class="btn btn-glass btn-lg">Explore Menu</a>
+            </div>
+          </div>
+
+          <div class="philosophy-visual">
+            <div class="chef-card">
+              <img src="./images/restaurant_interior.jpg" alt="Akaoni Intimate 20-Seat Dining Room" class="chef-img">
+              <div class="chef-quote-badge">
+                <span class="quote-kanji">厳選</span>
+                <span class="quote-text">“Michelin Guide Selection: A quiet sanctuary celebrating pure Japanese technique in Carmel.”</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="brand-logo">
+          <div class="hanko-seal">赤<br>鬼</div>
+          <div class="brand-names">
+            <span class="brand-en">AKAONI 赤鬼</span>
+            <span class="brand-sub">AUTHENTIC SUSHI & ROBATA</span>
+          </div>
+        </div>
+        <p class="footer-bio">
+          Carmel-by-the-Sea's revered Japanese culinary sanctuary. Dedicated to pristine fish, respectful craft, and intimate Edomae traditions.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Seasonal Menu</a></li>
+          <li><a href="philosophy.html">Chef & Craft</a></li>
+          <li><a href="reserve.html">Table Reservations</a></li>
+          <li><a href="location.html">Location & Hours</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Hours</h5>
+        <p><strong>Lunch:</strong> Thu – Sat: 11:30 AM – 1:00 PM</p>
+        <p><strong>Dinner:</strong> Tue – Sat: 5:00 PM – 8:30 PM</p>
+        <p><strong>Sun & Mon:</strong> Closed</p>
+      </div>
+
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <p>6th Ave, Carmel-by-the-Sea, CA 93921</p>
+        <p><a href="tel:8316201516" class="tel-link">(831) 620-1516</a></p>
+        <div class="footer-badge">Michelin Recognized</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Akaoni Japanese Restaurant. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="script.js"></script>
+</body>
+</html>

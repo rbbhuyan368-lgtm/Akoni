@@ -1,0 +1,1974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Akaoni 赤鬼 | Menu Items Admin Panel</title>
+  <meta name="description" content="Akaoni Menu Food Items Admin Management Panel">
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👹</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Noto+Serif+JP:wght@400;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* Dedicated Admin Panel Styles - Cream Luxury Palette */
+    :root {
+      --admin-bg: #F7F2EB;
+      --admin-surface: #FFFDF9;
+      --admin-surface-hover: #F2EBE0;
+      --admin-card: #FFFFFF;
+      --admin-border: #E8DCCF;
+      --admin-border-active: #C99665;
+      --admin-accent: #B22222;
+      --admin-gold: #966F52;
+      --admin-text-main: #23160D;
+      --admin-text-muted: #554134;
+      --admin-text-sub: #7A6658;
+    }
+
+    body.admin-body {
+      background-color: var(--admin-bg);
+      color: var(--admin-text-main);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* LOGIN SCREEN VIEW */
+    .login-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+      background: radial-gradient(circle at center, #FFFDF9 0%, #F7F2EB 100%);
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      background: #FFFFFF;
+      border: 1px solid var(--admin-border);
+      border-radius: 20px;
+      padding: 36px 30px;
+      box-shadow: 0 15px 40px rgba(60, 40, 20, 0.08);
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .login-hanko {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 16px;
+      background: linear-gradient(135deg, #B22222, #8C272B);
+      color: #fff;
+      font-family: var(--font-kanji);
+      font-weight: 700;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      box-shadow: 0 0 16px rgba(178, 34, 34, 0.25);
+    }
+
+    .login-title {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      margin: 0 0 6px;
+      color: var(--admin-text-main);
+    }
+
+    .login-sub {
+      font-size: 0.88rem;
+      color: var(--admin-text-sub);
+      margin: 0 0 24px;
+    }
+
+    .login-form-group {
+      text-align: left;
+      margin-bottom: 16px;
+    }
+
+    .login-form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--admin-text-muted);
+    }
+
+    .login-input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px 14px;
+      border: 1px solid var(--admin-border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+      background: #FFFDF9;
+      color: var(--admin-text-main);
+      transition: all 0.2s ease;
+    }
+
+    .login-input:focus {
+      border-color: var(--admin-border-active);
+      box-shadow: 0 0 0 3px rgba(201, 150, 101, 0.2);
+    }
+
+    .login-error {
+      display: none;
+      background: rgba(178, 34, 34, 0.08);
+      border: 1px solid rgba(178, 34, 34, 0.3);
+      color: var(--admin-accent);
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    .btn-login-submit {
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(135deg, #B22222, #8C272B);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(178, 34, 34, 0.25);
+      transition: all 0.2s ease;
+    }
+
+    .btn-login-submit:hover {
+      background: linear-gradient(135deg, #CF3339, #B22222);
+      transform: translateY(-1px);
+    }
+
+    .login-hint {
+      margin-top: 18px;
+      font-size: 0.78rem;
+      color: var(--admin-text-sub);
+      background: #F4EFE6;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--admin-border);
+    }
+
+    /* AUTHENTICATED ADMIN PANEL VIEW */
+    #adminView {
+      display: none;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Admin Top Header */
+    .admin-header {
+      background: rgba(255, 253, 249, 0.96);
+      border-bottom: 1px solid var(--admin-border);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 10px 18px;
+      box-shadow: 0 2px 10px rgba(60, 40, 20, 0.05);
+    }
+
+    .admin-header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .admin-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .admin-hanko {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #B22222, #8C272B);
+      color: #fff;
+      font-family: var(--font-kanji);
+      font-weight: 700;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      text-align: center;
+    }
+
+    .admin-title-wrap h1 {
+      font-family: var(--font-display);
+      font-size: 1.12rem;
+      letter-spacing: 0.06em;
+      margin: 0;
+      color: var(--admin-text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .admin-badge {
+      font-family: var(--font-heading);
+      background: rgba(178, 34, 34, 0.1);
+      border: 1px solid rgba(178, 34, 34, 0.3);
+      color: var(--admin-accent);
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .admin-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-admin-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 7px;
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid var(--admin-border);
+      background: #FFFFFF;
+      color: var(--admin-text-main);
+      box-shadow: 0 1px 3px rgba(60, 40, 20, 0.04);
+      white-space: nowrap;
+    }
+
+    .btn-admin-nav:hover {
+      background: #F4ECE1;
+      border-color: var(--admin-gold);
+      transform: translateY(-1px);
+    }
+
+    .btn-admin-primary {
+      background: linear-gradient(135deg, #B22222, #8C272B);
+      color: #fff;
+      border: none;
+      box-shadow: 0 3px 10px rgba(178, 34, 34, 0.2);
+    }
+
+    .btn-admin-primary:hover {
+      background: linear-gradient(135deg, #CF3339, #B22222);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .btn-logout {
+      background: rgba(178, 34, 34, 0.08);
+      border: 1px solid rgba(178, 34, 34, 0.25);
+      color: var(--admin-accent);
+    }
+
+    .btn-logout:hover {
+      background: var(--admin-accent);
+      color: #fff;
+    }
+
+    /* Main Container */
+    .admin-main {
+      flex: 1;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px 18px 50px;
+      box-sizing: border-box;
+    }
+
+    /* Hero / Action Toolbar */
+    .admin-toolbar {
+      background: var(--admin-surface);
+      border: 1px solid var(--admin-border);
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-bottom: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: 0 3px 15px rgba(60, 40, 20, 0.04);
+    }
+
+    .admin-toolbar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .admin-toolbar-title h2 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      margin: 0 0 3px;
+      color: var(--admin-text-main);
+    }
+
+    .admin-toolbar-title p {
+      font-size: 0.84rem;
+      margin: 0;
+      color: var(--admin-text-sub);
+    }
+
+    .toolbar-actions-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* Controls Row: Search & Filters */
+    .admin-filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--admin-border);
+    }
+
+    .admin-search-wrap {
+      flex: 1;
+      min-width: 220px;
+      max-width: 380px;
+      position: relative;
+    }
+
+    .admin-search-wrap input {
+      width: 100%;
+      box-sizing: border-box;
+      background: #FFFFFF;
+      border: 1px solid var(--admin-border);
+      border-radius: 8px;
+      padding: 8px 12px 8px 34px;
+      color: var(--admin-text-main);
+      font-size: 0.86rem;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .admin-search-wrap input:focus {
+      border-color: var(--admin-border-active);
+      box-shadow: 0 0 0 3px rgba(201, 150, 101, 0.15);
+    }
+
+    .admin-search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--admin-gold);
+      pointer-events: none;
+    }
+
+    .admin-category-pills-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      max-width: 100%;
+      padding-bottom: 2px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .admin-category-pills-wrap::-webkit-scrollbar {
+      display: none;
+    }
+
+    .admin-cat-pill {
+      background: #FFFFFF;
+      border: 1px solid var(--admin-border);
+      color: var(--admin-text-muted);
+      padding: 5px 12px;
+      border-radius: 18px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .admin-cat-pill:hover,
+    .admin-cat-pill.active {
+      background: #F0E6D8;
+      border-color: var(--admin-border-active);
+      color: var(--admin-text-main);
+    }
+
+    .admin-item-count-badge {
+      font-size: 0.8rem;
+      color: var(--admin-gold);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* COMPACT FOOD ITEMS GRID */
+    .admin-dishes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 14px;
+    }
+
+    /* COMPACT FOOD ITEM CARD */
+    .admin-dish-card {
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.2s ease;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(60, 40, 20, 0.04);
+    }
+
+    .admin-dish-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--admin-border-active);
+      box-shadow: 0 8px 18px rgba(60, 40, 20, 0.08);
+    }
+
+    .admin-dish-card-media {
+      position: relative;
+      width: 100%;
+      height: 110px;
+      background: #EFE8DE;
+      overflow: hidden;
+    }
+
+    .admin-dish-card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .admin-dish-card:hover .admin-dish-card-media img {
+      transform: scale(1.04);
+    }
+
+    .admin-dish-cat-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(255, 253, 249, 0.94);
+      border: 1px solid var(--admin-border);
+      color: var(--admin-gold);
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .admin-dish-price-badge {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: var(--admin-accent);
+      color: #fff;
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 5px;
+      box-shadow: 0 2px 6px rgba(178, 34, 34, 0.25);
+    }
+
+    .admin-dish-card-body {
+      padding: 10px 12px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .admin-dish-names {
+      margin-bottom: 6px;
+    }
+
+    .admin-dish-en-name {
+      font-family: var(--font-heading);
+      font-size: 0.98rem;
+      font-weight: 700;
+      margin: 0 0 2px;
+      color: var(--admin-text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .admin-dish-jp-name {
+      font-family: var(--font-kanji);
+      font-size: 0.74rem;
+      color: var(--admin-gold);
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .admin-dish-desc {
+      font-size: 0.78rem;
+      line-height: 1.35;
+      color: var(--admin-text-muted);
+      margin: 0 0 10px;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Card Actions Footer */
+    .admin-dish-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding-top: 8px;
+      border-top: 1px solid var(--admin-border);
+    }
+
+    .btn-edit-dish {
+      flex: 1;
+      background: #FAF5ED;
+      border: 1px solid var(--admin-border);
+      color: var(--admin-text-main);
+      padding: 5px 8px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .btn-edit-dish:hover {
+      background: var(--admin-border-active);
+      color: #FFFFFF;
+    }
+
+    .btn-delete-dish {
+      background: rgba(178, 34, 34, 0.08);
+      border: 1px solid rgba(178, 34, 34, 0.2);
+      color: var(--admin-accent);
+      padding: 5px 8px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-delete-dish:hover {
+      background: var(--admin-accent);
+      color: #fff;
+    }
+
+    /* MODAL BASE */
+    .admin-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(35, 22, 13, 0.45);
+      backdrop-filter: blur(5px);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .admin-modal-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .admin-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.96);
+      width: 94%;
+      max-width: 620px;
+      max-height: 90vh;
+      background: #FFFDF9;
+      border: 1px solid var(--admin-border);
+      border-radius: 18px;
+      box-shadow: 0 15px 40px rgba(60, 40, 20, 0.18);
+      z-index: 1001;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .admin-modal.active {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .admin-modal-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--admin-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #F9F4EC;
+    }
+
+    .admin-modal-header h3 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      margin: 0;
+      color: var(--admin-text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .admin-modal-close {
+      background: none;
+      border: none;
+      color: var(--admin-text-sub);
+      font-size: 1.4rem;
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: 4px;
+      line-height: 1;
+    }
+
+    .admin-modal-close:hover {
+      color: var(--admin-accent);
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    .admin-modal-body {
+      padding: 18px;
+      overflow-y: auto;
+      flex: 1;
+      background: #FFFDF9;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Form Fields */
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--admin-text-main);
+      margin-bottom: 4px;
+    }
+
+    .form-label span.req {
+      color: var(--admin-accent);
+    }
+
+    .form-control {
+      width: 100%;
+      box-sizing: border-box;
+      background: #FFFFFF;
+      border: 1px solid var(--admin-border);
+      border-radius: 7px;
+      padding: 8px 12px;
+      color: var(--admin-text-main);
+      font-size: 0.88rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-control:focus {
+      border-color: var(--admin-border-active);
+      box-shadow: 0 0 0 3px rgba(201, 150, 101, 0.15);
+    }
+
+    textarea.form-control {
+      min-height: 75px;
+      resize: vertical;
+      line-height: 1.4;
+    }
+
+    /* Photo Upload & Preview Box */
+    .photo-preview-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 8px;
+      background: #F9F5EE;
+      border: 1px dashed var(--admin-border);
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .photo-preview-img {
+      width: 70px;
+      height: 55px;
+      border-radius: 5px;
+      object-fit: cover;
+      background: #EFE8DE;
+      border: 1px solid var(--admin-border);
+    }
+
+    .photo-preview-info {
+      flex: 1;
+      font-size: 0.78rem;
+      color: var(--admin-text-sub);
+    }
+
+    .gallery-quick-picker {
+      margin-top: 8px;
+    }
+
+    .gallery-quick-picker label {
+      font-size: 0.76rem;
+      color: var(--admin-text-sub);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .gallery-thumbs-row {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: thin;
+    }
+
+    .gallery-thumb-btn {
+      flex: 0 0 46px;
+      height: 36px;
+      border-radius: 5px;
+      overflow: hidden;
+      border: 1px solid var(--admin-border);
+      cursor: pointer;
+      background: none;
+      padding: 0;
+      transition: all 0.2s ease;
+    }
+
+    .gallery-thumb-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-thumb-btn:hover,
+    .gallery-thumb-btn.selected {
+      border-color: var(--admin-accent);
+      transform: scale(1.06);
+      box-shadow: 0 0 8px rgba(178, 34, 34, 0.2);
+    }
+
+    /* Modal Footer */
+    .admin-modal-footer {
+      padding: 12px 18px;
+      border-top: 1px solid var(--admin-border);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      background: #F9F4EC;
+    }
+
+    /* CATEGORIES LIST TABLE IN MODAL */
+    .cats-manage-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-height: 200px;
+      overflow-y: auto;
+      margin-top: 12px;
+      border: 1px solid var(--admin-border);
+      border-radius: 8px;
+      padding: 8px;
+      background: #FFFFFF;
+    }
+
+    .cat-item-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 10px;
+      background: #FAF6EF;
+      border-radius: 6px;
+      font-size: 0.84rem;
+    }
+
+    .cat-item-row .cat-item-name {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      color: var(--admin-text-main);
+    }
+
+    .cat-item-row .cat-item-kanji {
+      font-family: var(--font-kanji);
+      color: var(--admin-gold);
+      font-size: 0.8rem;
+    }
+
+    .btn-del-cat {
+      background: none;
+      border: none;
+      color: var(--admin-accent);
+      cursor: pointer;
+      font-size: 0.9rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .btn-del-cat:hover {
+      background: rgba(178, 34, 34, 0.1);
+    }
+
+    /* Toast Notification */
+    .admin-toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #FFFFFF;
+      border: 1px solid var(--admin-border-active);
+      color: var(--admin-text-main);
+      padding: 12px 18px;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(60, 40, 20, 0.14);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      z-index: 2000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .admin-toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .admin-toast.success {
+      border-color: #2e7d32;
+    }
+
+    /* RESPONSIVE: TABLETS & MOBILE */
+    @media (max-width: 900px) {
+      .admin-dishes-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .admin-main {
+        padding: 14px 12px 40px;
+      }
+      .admin-header {
+        padding: 8px 12px;
+      }
+      .admin-title-wrap h1 {
+        font-size: 0.98rem;
+      }
+      .admin-toolbar {
+        padding: 14px 12px;
+      }
+      .admin-dishes-grid {
+        grid-template-columns: 1fr;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .admin-filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .admin-search-wrap {
+        max-width: 100%;
+        min-width: 100%;
+      }
+      .toolbar-actions-group {
+        width: 100%;
+      }
+      .toolbar-actions-group button {
+        flex: 1;
+        justify-content: center;
+      }
+      .admin-modal {
+        width: 95%;
+        max-height: 94vh;
+      }
+    }
+  </style>
+</head>
+<body class="admin-body">
+
+  <!-- 1. LOGIN SCREEN GATE -->
+  <div class="login-container" id="loginScreen">
+    <div class="login-card">
+      <div class="login-hanko">赤<br>鬼</div>
+      <h2 class="login-title">Akaoni Admin Login</h2>
+      <p class="login-sub">Enter credentials to manage menu dishes & categories</p>
+      
+      <div class="login-error" id="loginError">
+        Incorrect ID or Password. Please try again.
+      </div>
+
+      <form id="loginForm">
+        <div class="login-form-group">
+          <label for="loginId">Admin ID / Username</label>
+          <input type="text" id="loginId" class="login-input" placeholder="e.g. admin" required autocomplete="username">
+        </div>
+
+        <div class="login-form-group">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" class="login-input" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+
+        <button type="submit" class="btn-login-submit" id="btnLoginSubmit">
+          Log In to Admin Panel (প্রবেশ করুন)
+        </button>
+      </form>
+
+      <div class="login-hint">
+        🔑 <strong>Default Login:</strong> ID: <code>admin</code> | Password: <code>admin</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. AUTHENTICATED ADMIN PANEL VIEW -->
+  <div id="adminView">
+    <!-- ADMIN HEADER -->
+    <header class="admin-header">
+      <div class="admin-header-inner">
+        <a href="menu.html" class="admin-brand" target="_blank" title="Akaoni">
+          <div class="admin-hanko">赤<br>鬼</div>
+          <div class="admin-title-wrap">
+            <h1>AKAONI <span class="admin-badge">Menu Admin</span></h1>
+          </div>
+        </a>
+
+        <div class="admin-header-actions">
+          <button id="btnResetDefaults" class="btn-admin-nav" title="Reset dishes to original defaults" style="font-size: 0.78rem; color: var(--admin-text-sub);">
+            ↺ Reset
+          </button>
+          <a href="menu.html" class="btn-admin-nav" target="_blank" title="View Live Menu Page">
+            <span>View Menu ↗</span>
+          </a>
+          <button id="btnLogout" class="btn-admin-nav btn-logout" title="Log Out from Admin">
+            <span>Logout 🔒</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN ADMIN CONTENT -->
+    <main class="admin-main">
+      
+      <!-- TOOLBAR & STATS -->
+      <section class="admin-toolbar">
+        <div class="admin-toolbar-header">
+          <div class="admin-toolbar-title">
+            <h2>Food Items & Categories Management</h2>
+            <p>Add new dishes, edit price/photo/description, or create custom menu categories.</p>
+          </div>
+          <div class="toolbar-actions-group">
+            <button id="btnOpenCategoryModal" class="btn-admin-nav" style="border-color: var(--admin-gold); font-size: 0.84rem;">
+              <span>📁 Manage Categories</span>
+            </button>
+            <button id="btnOpenAddModal" class="btn-admin-nav btn-admin-primary" style="font-size: 0.84rem;">
+              <span>+ Add New Food Item</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- SEARCH & CATEGORY FILTERS (Scrollable on Mobile/Tablet) -->
+        <div class="admin-filter-bar">
+          <div class="admin-search-wrap">
+            <svg class="admin-search-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="adminSearchInput" placeholder="Filter dishes by name, ingredients, price...">
+          </div>
+
+          <div class="admin-category-pills-wrap" id="adminCategoryPills">
+            <!-- Dynamically populated category pills -->
+          </div>
+
+          <div class="admin-item-count-badge" id="adminItemCount">
+            Showing 0 dishes
+          </div>
+        </div>
+      </section>
+
+      <!-- COMPACT DISHES LIST GRID -->
+      <div class="admin-dishes-grid" id="adminDishesGrid">
+        <!-- Dynamically Rendered Compact Food Items -->
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ADD / EDIT DISH MODAL -->
+  <div class="admin-modal-backdrop" id="modalBackdrop"></div>
+  <div class="admin-modal" id="dishModal">
+    <div class="admin-modal-header">
+      <h3 id="modalTitle">Edit Food Item</h3>
+      <button class="admin-modal-close" id="modalCloseBtn">&times;</button>
+    </div>
+    
+    <form id="dishForm" class="admin-modal-body">
+      <input type="hidden" id="dishId" value="">
+
+      <!-- Row 1: English & Japanese Name -->
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="dishEnName">Dish Name (English) <span class="req">*</span></label>
+          <input type="text" id="dishEnName" class="form-control" placeholder="e.g. Hon-Maguro Otoro" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="dishJpName">Japanese Name (Kanji) <span class="req">*</span></label>
+          <input type="text" id="dishJpName" class="form-control" placeholder="e.g. 本マグロ大トロ" required>
+        </div>
+      </div>
+
+      <!-- Row 2: Category & Price -->
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="dishCategory">Category <span class="req">*</span></label>
+          <select id="dishCategory" class="form-control" required>
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="dishPrice">Price ($ USD) <span class="req">*</span></label>
+          <input type="number" id="dishPrice" class="form-control" step="0.01" min="0" placeholder="e.g. 36.00" required>
+        </div>
+      </div>
+
+      <!-- Row 3: Photo / Image -->
+      <div class="form-group">
+        <label class="form-label" for="dishImage">Dish Photo / Image URL <span class="req">*</span></label>
+        <input type="text" id="dishImage" class="form-control" placeholder="./images/hero_tuna.jpg or URL" required>
+        
+        <!-- File upload for local photo -->
+        <div style="margin-top: 6px; display: flex; align-items: center; gap: 8px;">
+          <label class="btn-admin-nav" style="padding: 4px 10px; font-size: 0.76rem; cursor: pointer;">
+            📁 Upload From Device
+            <input type="file" id="dishPhotoUpload" accept="image/*" style="display: none;">
+          </label>
+          <span style="font-size: 0.74rem; color: var(--admin-text-sub);">JPG, PNG, WEBP</span>
+        </div>
+
+        <!-- Quick Restaurant Gallery Picker -->
+        <div class="gallery-quick-picker">
+          <label>Or select from restaurant gallery:</label>
+          <div class="gallery-thumbs-row">
+            <button type="button" class="gallery-thumb-btn" data-img="./images/hero_tuna.jpg" title="Hon-Maguro Otoro">
+              <img src="./images/hero_tuna.jpg" alt="Tuna">
+            </button>
+            <button type="button" class="gallery-thumb-btn" data-img="./images/hero_salmon.jpg" title="King Salmon">
+              <img src="./images/hero_salmon.jpg" alt="Salmon">
+            </button>
+            <button type="button" class="gallery-thumb-btn" data-img="./images/hero_uni.jpg" title="Hokkaido Uni">
+              <img src="./images/hero_uni.jpg" alt="Uni">
+            </button>
+            <button type="button" class="gallery-thumb-btn" data-img="./images/menu_wagyu.jpg" title="Miyazaki A5 Wagyu">
+              <img src="./images/menu_wagyu.jpg" alt="Wagyu">
+            </button>
+            <button type="button" class="gallery-thumb-btn" data-img="./images/menu_hamachi.jpg" title="Hamachi Truffle">
+              <img src="./images/menu_hamachi.jpg" alt="Hamachi">
+            </button>
+            <button type="button" class="gallery-thumb-btn" data-img="./images/menu_roll.jpg" title="Fire Dragon Roll">
+              <img src="./images/menu_roll.jpg" alt="Roll">
+            </button>
+            <button type="button" class="gallery-thumb-btn" data-img="./images/hero_matcha.jpg" title="Matcha Mousse">
+              <img src="./images/hero_matcha.jpg" alt="Matcha">
+            </button>
+            <button type="button" class="gallery-thumb-btn" data-img="./images/menu_sake.jpg" title="Dassai 23 Sake">
+              <img src="./images/menu_sake.jpg" alt="Sake">
+            </button>
+          </div>
+        </div>
+
+        <!-- Live Photo Preview -->
+        <div class="photo-preview-wrap">
+          <img id="modalPhotoPreview" src="./images/hero_tuna.jpg" alt="Preview" class="photo-preview-img">
+          <div class="photo-preview-info">
+            <strong>Photo Preview:</strong>
+            <div id="photoPreviewPath" style="word-break: break-all; opacity: 0.8; margin-top: 2px;">./images/hero_tuna.jpg</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 4: Description -->
+      <div class="form-group">
+        <label class="form-label" for="dishDesc">Description (খাবারের বিবরণ) <span class="req">*</span></label>
+        <textarea id="dishDesc" class="form-control" placeholder="Describe flavor, ingredients, and presentation..." required></textarea>
+      </div>
+
+      <!-- Row 5: Optional Subtitle, Origin & Ingredients -->
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="dishBadge">Feature Badge (Optional)</label>
+          <input type="text" id="dishBadge" class="form-control" placeholder="e.g. Michelin Feature, Chef Favorite">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="dishOrigin">Origin / Sourcing</label>
+          <input type="text" id="dishOrigin" class="form-control" placeholder="e.g. Toyosu Fish Market, Tokyo">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="dishIngredients">Ingredients (comma separated)</label>
+        <input type="text" id="dishIngredients" class="form-control" placeholder="e.g. Bluefin Otoro, Akazu Red Rice, Shizuoka Wasabi">
+      </div>
+    </form>
+
+    <div class="admin-modal-footer">
+      <button type="button" class="btn-admin-nav" id="modalCancelBtn">Cancel</button>
+      <button type="button" class="btn-admin-nav btn-admin-primary" id="modalSaveBtn">
+        <span>Save & Update Menu</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- MANAGE / CREATE CATEGORY MODAL -->
+  <div class="admin-modal-backdrop" id="categoryModalBackdrop"></div>
+  <div class="admin-modal" id="categoryModal" style="max-width: 500px;">
+    <div class="admin-modal-header">
+      <h3>📁 Manage & Create Categories (ক্যাটাগরি তৈরি)</h3>
+      <button class="admin-modal-close" id="catModalCloseBtn">&times;</button>
+    </div>
+
+    <div class="admin-modal-body">
+      <!-- Create Category Form -->
+      <form id="createCatForm">
+        <div class="form-group">
+          <label class="form-label" for="newCatName">New Category Name (English) <span class="req">*</span></label>
+          <input type="text" id="newCatName" class="form-control" placeholder="e.g. Special Rolls, Tempura, Appetizers" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="newCatKanji">Japanese Kanji / Character (Optional)</label>
+          <input type="text" id="newCatKanji" class="form-control" placeholder="e.g. 巻, 天, 揚" maxlength="4">
+        </div>
+
+        <button type="submit" class="btn-admin-nav btn-admin-primary" style="width: 100%; justify-content: center; padding: 10px;">
+          <span>+ Add Category to Menu (ক্যাটাগরি তৈরি করুন)</span>
+        </button>
+      </form>
+
+      <!-- Existing Categories List -->
+      <div style="margin-top: 20px;">
+        <label class="form-label" style="margin-bottom: 6px;">Active Menu Categories:</label>
+        <div class="cats-manage-list" id="catsManageList">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-modal-footer">
+      <button type="button" class="btn-admin-nav" id="catModalDoneBtn">Done</button>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="admin-toast" id="adminToast">
+    <span id="toastIcon">✨</span>
+    <span id="toastMsg">Dish successfully updated!</span>
+  </div>
+
+  <!-- ADMIN SCRIPT -->
+  <script>
+    // --- AUTHENTICATION ENGINE ---
+    const AUTH_SESSION_KEY = 'akaoni_admin_authenticated';
+    const VALID_USER = 'admin';
+    const VALID_PASSWORDS = ['admin', 'akaoni123'];
+
+    const loginScreen = document.getElementById('loginScreen');
+    const adminView = document.getElementById('adminView');
+    const loginForm = document.getElementById('loginForm');
+    const loginIdInput = document.getElementById('loginId');
+    const loginPassInput = document.getElementById('loginPassword');
+    const loginError = document.getElementById('loginError');
+    const btnLogout = document.getElementById('btnLogout');
+
+    const checkAuth = () => {
+      const isAuth = sessionStorage.getItem(AUTH_SESSION_KEY) === 'true';
+      if (isAuth) {
+        loginScreen.style.display = 'none';
+        adminView.style.display = 'flex';
+        initAdminData();
+      } else {
+        loginScreen.style.display = 'flex';
+        adminView.style.display = 'none';
+        loginIdInput.focus();
+      }
+    };
+
+    if (loginForm) {
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const id = loginIdInput.value.trim();
+        const pass = loginPassInput.value.trim();
+
+        if (id.toLowerCase() === VALID_USER && VALID_PASSWORDS.includes(pass)) {
+          sessionStorage.setItem(AUTH_SESSION_KEY, 'true');
+          loginError.style.display = 'none';
+          checkAuth();
+          showToast('Welcome back, Admin!');
+        } else {
+          loginError.style.display = 'block';
+          loginPassInput.value = '';
+          loginPassInput.focus();
+        }
+      });
+    }
+
+    if (btnLogout) {
+      btnLogout.addEventListener('click', () => {
+        sessionStorage.removeItem(AUTH_SESSION_KEY);
+        showToast('Logged out successfully.');
+        checkAuth();
+      });
+    }
+
+    // --- DATA & CATEGORY STATE ---
+    let dishesData = [];
+    let categoriesData = [
+      { id: "nigiri", name: "Nigiri & Sashimi", kanji: "握り" },
+      { id: "signature", name: "Chef's Signatures", kanji: "特撰" },
+      { id: "robata", name: "Binchotan Robata", kanji: "炉端" },
+      { id: "izakaya", name: "Izakaya Small Plates", kanji: "居酒" },
+      { id: "sake", name: "Sake & Drinks", kanji: "酒" },
+      { id: "dessert", name: "Desserts", kanji: "甘味" }
+    ];
+
+    let currentCategoryFilter = 'all';
+    let currentSearchTerm = '';
+
+    // Load Categories
+    const initCategories = async () => {
+      try {
+        const local = localStorage.getItem('akaoni_menu_categories');
+        if (local) {
+          const parsed = JSON.parse(local);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            categoriesData = parsed;
+          }
+        }
+      } catch(e) {}
+
+      try {
+        const res = await fetch('categories.json?t=' + Date.now());
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            categoriesData = data;
+            localStorage.setItem('akaoni_menu_categories', JSON.stringify(data));
+          }
+        }
+      } catch(e) {}
+
+      renderCategoryPillsAndSelect();
+    };
+
+    const persistCategories = async () => {
+      localStorage.setItem('akaoni_menu_categories', JSON.stringify(categoriesData));
+      try {
+        await fetch('/api/categories', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(categoriesData)
+        });
+      } catch(e) {}
+      renderCategoryPillsAndSelect();
+    };
+
+    const renderCategoryPillsAndSelect = () => {
+      // 1. Render Toolbar Pills
+      const pillsContainer = document.getElementById('adminCategoryPills');
+      if (pillsContainer) {
+        let html = `<button class="admin-cat-pill ${currentCategoryFilter === 'all' ? 'active' : ''}" data-category="all">All</button>`;
+        categoriesData.forEach(cat => {
+          const isActive = currentCategoryFilter === cat.id ? 'active' : '';
+          html += `<button class="admin-cat-pill ${isActive}" data-category="${cat.id}">${cat.name}</button>`;
+        });
+        pillsContainer.innerHTML = html;
+
+        pillsContainer.querySelectorAll('.admin-cat-pill').forEach(pill => {
+          pill.addEventListener('click', () => {
+            pillsContainer.querySelectorAll('.admin-cat-pill').forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            currentCategoryFilter = pill.dataset.category;
+            renderAdminDishes();
+          });
+        });
+      }
+
+      // 2. Render Modal Category Dropdown
+      const catSelect = document.getElementById('dishCategory');
+      if (catSelect) {
+        catSelect.innerHTML = categoriesData.map(cat => 
+          `<option value="${cat.id}">${cat.name} (${cat.kanji || '食'})</option>`
+        ).join('');
+      }
+
+      // 3. Render Modal Category Manage List
+      const catManageList = document.getElementById('catsManageList');
+      if (catManageList) {
+        catManageList.innerHTML = categoriesData.map(cat => {
+          const dishCount = dishesData.filter(d => d.category === cat.id).length;
+          const isDefault = ['nigiri', 'signature', 'robata', 'izakaya', 'sake', 'dessert'].includes(cat.id);
+          return `
+            <div class="cat-item-row">
+              <span class="cat-item-name">
+                <span>${cat.name}</span>
+                <span class="cat-item-kanji">${cat.kanji || ''}</span>
+                <small style="color: var(--admin-text-sub); font-size: 0.72rem;">(${dishCount} items)</small>
+              </span>
+              ${!isDefault ? `
+                <button type="button" class="btn-del-cat" onclick="deleteCategory('${cat.id}')" title="Delete category">✕</button>
+              ` : `<small style="font-size: 0.7rem; color: var(--admin-text-sub);">Default</small>`}
+            </div>
+          `;
+        }).join('');
+      }
+    };
+
+    // Category Creation
+    const createCatForm = document.getElementById('createCatForm');
+    const newCatNameInput = document.getElementById('newCatName');
+    const newCatKanjiInput = document.getElementById('newCatKanji');
+
+    if (createCatForm) {
+      createCatForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = newCatNameInput.value.trim();
+        const kanji = newCatKanjiInput.value.trim() || name.charAt(0);
+
+        if (!name) return;
+
+        // Auto id
+        const id = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+        if (categoriesData.some(c => c.id === id)) {
+          alert('A category with this name already exists.');
+          return;
+        }
+
+        categoriesData.push({ id, name, kanji });
+        await persistCategories();
+        newCatNameInput.value = '';
+        newCatKanjiInput.value = '';
+        showToast(`🎉 Category "${name}" added to menu!`);
+      });
+    }
+
+    window.deleteCategory = async (catId) => {
+      const cat = categoriesData.find(c => c.id === catId);
+      if (!cat) return;
+      const count = dishesData.filter(d => d.category === catId).length;
+      if (count > 0) {
+        if (!confirm(`There are ${count} dishes assigned to "${cat.name}". Are you sure you want to delete this category?`)) {
+          return;
+        }
+      } else {
+        if (!confirm(`Delete category "${cat.name}"?`)) return;
+      }
+
+      categoriesData = categoriesData.filter(c => c.id !== catId);
+      await persistCategories();
+      showToast(`Category "${cat.name}" deleted.`);
+    };
+
+    // Category Modal controls
+    const categoryModal = document.getElementById('categoryModal');
+    const categoryModalBackdrop = document.getElementById('categoryModalBackdrop');
+    const btnOpenCategoryModal = document.getElementById('btnOpenCategoryModal');
+    const catModalCloseBtn = document.getElementById('catModalCloseBtn');
+    const catModalDoneBtn = document.getElementById('catModalDoneBtn');
+
+    const openCategoryModal = () => {
+      renderCategoryPillsAndSelect();
+      categoryModal.classList.add('active');
+      categoryModalBackdrop.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      newCatNameInput.focus();
+    };
+
+    const closeCategoryModal = () => {
+      categoryModal.classList.remove('active');
+      categoryModalBackdrop.classList.remove('active');
+      document.body.style.overflow = '';
+    };
+
+    if (btnOpenCategoryModal) btnOpenCategoryModal.addEventListener('click', openCategoryModal);
+    if (catModalCloseBtn) catModalCloseBtn.addEventListener('click', closeCategoryModal);
+    if (catModalDoneBtn) catModalDoneBtn.addEventListener('click', closeCategoryModal);
+    if (categoryModalBackdrop) categoryModalBackdrop.addEventListener('click', closeCategoryModal);
+
+    // --- DISHES MANAGEMENT ENGINE ---
+    const defaultDishes = [
+      {
+        id: 'dish-1',
+        category: 'nigiri',
+        jpName: '本マグロ大トロ',
+        enName: 'Hon-Maguro Otoro',
+        sub: '本マグロ大トロ • Aged Bluefin',
+        badge: 'Michelin Feature',
+        price: 36.00,
+        image: './images/hero_tuna.jpg',
+        origin: 'Toyosu Fish Market, Tokyo',
+        desc: 'Melt-in-your-mouth Bluefin tuna belly aged for optimal amino acid depth, torched with binchotan oak and finished with house nikiri shoyu and 24K gold flakes.',
+        umami: 98,
+        richness: 95,
+        sweetness: 80,
+        ingredients: ['Bluefin Otoro', 'Akazu Red Rice', 'Shizuoka Wasabi', 'Simmered Nikiri', '24K Gold Leaf'],
+        pairing: 'Dassai 23 Junmai Daiginjo or Kenbishi Mizuho.'
+      },
+      {
+        id: 'dish-2',
+        category: 'nigiri',
+        jpName: 'サーモントロ炙り',
+        enName: 'King Salmon Aburi Toro',
+        sub: 'サーモントロ炙り • Wild Ora Belly',
+        badge: 'Chef Favorite',
+        price: 28.00,
+        image: './images/hero_salmon.jpg',
+        origin: 'Marlborough Sounds, NZ',
+        desc: 'Wild Ora King Salmon belly delicately seared over Japanese charcoal, crowned with glowing Ikura salmon roe, fresh lime, and micro-herbs.',
+        umami: 90,
+        richness: 88,
+        sweetness: 85,
+        ingredients: ['Ora King Salmon', 'Wild Ikura', 'Fresh Lime Zest', 'Akazu Sushi Rice', 'Toasted Sesame'],
+        pairing: 'Kubota Manju Junmai Daiginjo.'
+      },
+      {
+        id: 'dish-3',
+        category: 'signature',
+        jpName: '北海道生雲丹・イクラ丼',
+        enName: 'Hokkaido Uni & Ikura Bowl',
+        sub: '生雲丹イクラ丼 • Kelp-Fed Uni',
+        badge: 'Top Signature',
+        price: 48.00,
+        image: './images/hero_uni.jpg',
+        origin: 'Hokkaido Auction, Japan',
+        desc: 'Top-grade sweet Hokkaido Sea Urchin paired with marinated wild salmon roe over seasoned sushi rice, garnished with fresh shiso and gold flakes.',
+        umami: 96,
+        richness: 92,
+        sweetness: 90,
+        ingredients: ['Hokkaido Grade-A Uni', 'Marinated Ikura', 'Shiso Leaf', 'Nori Flakes', 'Gold Foil'],
+        pairing: 'Kokuryu "Black Dragon" Daiginjo.'
+      },
+      {
+        id: 'dish-4',
+        category: 'robata',
+        jpName: '宮崎牛A5炭火串焼き',
+        enName: 'Miyazaki A5 Wagyu Robata',
+        sub: '宮崎牛炭火串 • 10-Yr Aged Tare',
+        badge: 'Binchotan Sear',
+        price: 42.00,
+        image: './images/menu_wagyu.jpg',
+        origin: 'Miyazaki Prefecture, Japan',
+        desc: 'Certified A5 Miyazaki Wagyu beef skewers grilled over Kishu binchotan white oak, glazed with aged house tare sauce and scallions.',
+        umami: 95,
+        richness: 98,
+        sweetness: 75,
+        ingredients: ['A5 Miyazaki Beef', '10-Year Aged Tare', 'Tokyo Scallions', 'White Sesame', 'Smoked Sea Salt'],
+        pairing: 'Yamazaki 12yr Single Malt Whisky or Full-Bodied Junmai.'
+      },
+      {
+        id: 'dish-5',
+        category: 'nigiri',
+        jpName: 'ハマチトリュフ刺身',
+        enName: 'Hamachi Truffle Sashimi',
+        sub: 'ハマチトリュフ • Monterey Catch',
+        badge: 'Seasonal Catch',
+        price: 32.00,
+        image: './images/menu_hamachi.jpg',
+        origin: 'Kagoshima Bay & Monterey',
+        desc: 'Silky yellowtail sashimi drizzled with white truffle essence, citrus yuzu ponzu, thin jalapeño rings, and fresh black winter truffle shavings.',
+        umami: 92,
+        richness: 82,
+        sweetness: 78,
+        ingredients: ['Yellowtail Hamachi', 'Black Truffle', 'Yuzu Ponzu', 'Serrano Chili', 'Black Sesame'],
+        pairing: 'Born Gold Muroka Junmai Daiginjo.'
+      },
+      {
+        id: 'dish-6',
+        category: 'signature',
+        jpName: '赤鬼特製ドラゴンロール',
+        enName: 'Akaoni Fire Dragon Roll',
+        sub: '特製ロール • Tiger Shrimp',
+        badge: 'House Specialty',
+        price: 26.00,
+        image: './images/menu_roll.jpg',
+        origin: 'Akaoni Original Recipe',
+        desc: 'Crispy wild shrimp tempura and cucumber wrapped with freshwater unagi eel, creamy Hass avocado, red tobiko caviar, and spicy kabayaki glaze.',
+        umami: 88,
+        richness: 85,
+        sweetness: 82,
+        ingredients: ['Tempura Tiger Shrimp', 'Freshwater Unagi', 'Avocado', 'Tobiko Roe', 'Spicy Aioli'],
+        pairing: 'Asahi Super Dry Draft or Crisp Junmai Ginjo.'
+      },
+      {
+        id: 'dish-7',
+        category: 'sake',
+        jpName: '獺祭 磨き二割三分',
+        enName: 'Dassai 23 Junmai Daiginjo',
+        sub: '獺祭二割三分 • Prestige Sake',
+        badge: 'Prestige Sake',
+        price: 34.00,
+        image: './images/menu_sake.jpg',
+        origin: 'Yamaguchi, Asahi Shuzo',
+        desc: 'Yamada Nishiki rice milled down to 23%. Notes of ripe white peach, muscat grapes, honeydew, and an ethereal, silky finish.',
+        umami: 75,
+        richness: 70,
+        sweetness: 85,
+        ingredients: ['Yamada Nishiki Rice', 'Pure Spring Dashi Water', 'Artisan Yeast #9'],
+        pairing: 'Complements all Raw Nigiri, Otoro & Uni.'
+      },
+      {
+        id: 'dish-8',
+        category: 'dessert',
+        jpName: '京都宇治抹茶ムース和菓子',
+        enName: 'Ceremonial Uji Matcha Mousse',
+        sub: '宇治抹茶ムース • First-Flush Tea',
+        badge: 'Artisan Confection',
+        price: 18.00,
+        image: './images/hero_matcha.jpg',
+        origin: 'Kyoto Uji, Japan',
+        desc: 'First-flush ceremonial Uji green tea mousse cake, sweet Azuki bean compote, matcha gelato, and white chocolate blossom with gold flakes.',
+        umami: 60,
+        richness: 78,
+        sweetness: 82,
+        ingredients: ['Ceremonial Uji Matcha', 'Hokkaido Azuki Red Beans', 'Artisan Gelato', 'White Chocolate'],
+        pairing: 'Hot Genmaicha Roasted Rice Tea or Umeshu Plum Wine.'
+      },
+      {
+        id: 'dish-9',
+        category: 'izakaya',
+        jpName: '雲丹とトリュフの茶碗蒸し',
+        enName: 'Truffle & Uni Chawanmushi',
+        sub: '雲丹茶碗蒸し • Warm Umami',
+        badge: 'Warm Umami',
+        price: 22.00,
+        image: './images/hero_uni.jpg',
+        origin: 'Akaoni Kitchen',
+        desc: 'Silken Japanese egg custard steamed with katsuobushi dashi, crowned with warmed Hokkaido sea urchin, shiitake mushrooms, and black truffle drizzle.',
+        umami: 96,
+        richness: 86,
+        sweetness: 80,
+        ingredients: ['Organic Eggs', 'Katsuo Dashi', 'Hokkaido Uni', 'Shiitake', 'Mitsuba Herb'],
+        pairing: 'Suigei "Drunken Whale" Tokubetsu Junmai.'
+      },
+      {
+        id: 'dish-10',
+        category: 'sake',
+        jpName: '柚子紫蘇クラフトハイボール',
+        enName: 'Yuzu Shiso Craft Highball',
+        sub: '柚子紫蘇 • Craft Highball',
+        badge: 'Artisan Cocktail',
+        price: 19.00,
+        image: './images/menu_sake.jpg',
+        origin: 'Carmel Bar Craft',
+        desc: 'Roku Japanese Gin infused with fresh red shiso leaves, pressed Shikoku yuzu citrus, artisanal tonic, and effervescent soda water.',
+        umami: 50,
+        richness: 45,
+        sweetness: 70,
+        ingredients: ['Roku Gin', 'Fresh Yuzu Juice', 'Shiso Cordial', 'Artisan Tonic', 'Dehydrated Yuzu Wheel'],
+        pairing: 'Refreshing aperitif for Robata skewers.'
+      }
+    ];
+
+    const initAdminData = async () => {
+      await initCategories();
+
+      // Load dishes from localStorage or dishes.json
+      const local = localStorage.getItem('akaoni_menu_dishes');
+      if (local) {
+        try {
+          const parsed = JSON.parse(local);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            dishesData = parsed;
+            renderAdminDishes();
+            return;
+          }
+        } catch(e) {}
+      }
+
+      try {
+        const res = await fetch('dishes.json?t=' + Date.now());
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            dishesData = data;
+            localStorage.setItem('akaoni_menu_dishes', JSON.stringify(data));
+            renderAdminDishes();
+            return;
+          }
+        }
+      } catch(e) {}
+
+      dishesData = JSON.parse(JSON.stringify(defaultDishes));
+      localStorage.setItem('akaoni_menu_dishes', JSON.stringify(dishesData));
+      renderAdminDishes();
+    };
+
+    const persistDishes = async () => {
+      localStorage.setItem('akaoni_menu_dishes', JSON.stringify(dishesData));
+      try {
+        await fetch('/api/dishes', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dishesData)
+        });
+      } catch (err) {}
+    };
+
+    const showToast = (message, isSuccess = true) => {
+      const toast = document.getElementById('adminToast');
+      const msgEl = document.getElementById('toastMsg');
+      const iconEl = document.getElementById('toastIcon');
+      msgEl.textContent = message;
+      iconEl.textContent = isSuccess ? '✅' : '⚠️';
+      toast.className = `admin-toast show ${isSuccess ? 'success' : ''}`;
+      setTimeout(() => {
+        toast.className = 'admin-toast';
+      }, 2800);
+    };
+
+    // Compact Dishes Rendering
+    const renderAdminDishes = () => {
+      const grid = document.getElementById('adminDishesGrid');
+      const countEl = document.getElementById('adminItemCount');
+      if (!grid) return;
+
+      const filtered = dishesData.filter(dish => {
+        const matchCat = currentCategoryFilter === 'all' || dish.category === currentCategoryFilter;
+        const matchSearch = !currentSearchTerm || 
+          dish.enName.toLowerCase().includes(currentSearchTerm.toLowerCase()) ||
+          dish.jpName.toLowerCase().includes(currentSearchTerm.toLowerCase()) ||
+          dish.desc.toLowerCase().includes(currentSearchTerm.toLowerCase()) ||
+          dish.price.toString().includes(currentSearchTerm) ||
+          (dish.ingredients && dish.ingredients.some(i => i.toLowerCase().includes(currentSearchTerm.toLowerCase())));
+        return matchCat && matchSearch;
+      });
+
+      countEl.textContent = `Showing ${filtered.length} of ${dishesData.length}`;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 40px 16px; color: var(--admin-text-sub);">
+            <div style="font-size: 2.2rem; margin-bottom: 8px;">🥢</div>
+            <h4 style="color: var(--admin-text-main); font-family: var(--font-heading); margin-bottom: 4px;">No dishes found</h4>
+            <p style="font-size: 0.82rem; margin: 0;">Try selecting another category or clearing search filter.</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(dish => {
+        const catObj = categoriesData.find(c => c.id === dish.category);
+        const catLabel = catObj ? catObj.name : dish.category;
+        return `
+          <div class="admin-dish-card" data-id="${dish.id}">
+            <div class="admin-dish-card-media">
+              <img src="${dish.image}" alt="${dish.enName}" onerror="this.src='./images/hero_tuna.jpg'">
+              <span class="admin-dish-cat-badge">${catLabel}</span>
+              <span class="admin-dish-price-badge">$${Number(dish.price).toFixed(2)}</span>
+            </div>
+            
+            <div class="admin-dish-card-body">
+              <div class="admin-dish-names">
+                <h3 class="admin-dish-en-name" title="${dish.enName}">${dish.enName}</h3>
+                <div class="admin-dish-jp-name">${dish.jpName}</div>
+              </div>
+
+              <p class="admin-dish-desc">${dish.desc}</p>
+
+              <div class="admin-dish-actions">
+                <button class="btn-edit-dish" onclick="openEditModal('${dish.id}')">
+                  ✏️ Edit
+                </button>
+                <button class="btn-delete-dish" onclick="deleteDish('${dish.id}')" title="Delete from Menu">
+                  🗑️
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    };
+
+    // Filter listeners
+    const searchInput = document.getElementById('adminSearchInput');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        currentSearchTerm = e.target.value.trim();
+        renderAdminDishes();
+      });
+    }
+
+    // Modal controls for Dish Add/Edit
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const dishModal = document.getElementById('dishModal');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+    const modalCancelBtn = document.getElementById('modalCancelBtn');
+    const modalSaveBtn = document.getElementById('modalSaveBtn');
+    const btnOpenAddModal = document.getElementById('btnOpenAddModal');
+    const dishPhotoUpload = document.getElementById('dishPhotoUpload');
+    const dishImage = document.getElementById('dishImage');
+    const modalPhotoPreview = document.getElementById('modalPhotoPreview');
+    const photoPreviewPath = document.getElementById('photoPreviewPath');
+
+    const updateImagePreview = (src) => {
+      dishImage.value = src;
+      modalPhotoPreview.src = src;
+      photoPreviewPath.textContent = src.length > 40 ? src.slice(0, 38) + '...' : src;
+    };
+
+    document.querySelectorAll('.gallery-thumb-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.gallery-thumb-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        updateImagePreview(btn.dataset.img);
+      });
+    });
+
+    if (dishImage) {
+      dishImage.addEventListener('input', (e) => {
+        updateImagePreview(e.target.value.trim());
+      });
+    }
+
+    if (dishPhotoUpload) {
+      dishPhotoUpload.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            updateImagePreview(event.target.result);
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+
+    const openAddModal = () => {
+      renderCategoryPillsAndSelect();
+      document.getElementById('modalTitle').textContent = '+ Add New Food Item';
+      document.getElementById('dishId').value = '';
+      document.getElementById('dishEnName').value = '';
+      document.getElementById('dishJpName').value = '';
+      document.getElementById('dishCategory').value = categoriesData[0]?.id || 'nigiri';
+      document.getElementById('dishPrice').value = '';
+      document.getElementById('dishDesc').value = '';
+      document.getElementById('dishBadge').value = '';
+      document.getElementById('dishOrigin').value = '';
+      document.getElementById('dishIngredients').value = '';
+      updateImagePreview('./images/hero_tuna.jpg');
+
+      dishModal.classList.add('active');
+      modalBackdrop.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('dishEnName').focus();
+    };
+
+    window.openEditModal = (id) => {
+      renderCategoryPillsAndSelect();
+      const dish = dishesData.find(d => d.id === id);
+      if (!dish) return;
+
+      document.getElementById('modalTitle').textContent = `Edit: ${dish.enName}`;
+      document.getElementById('dishId').value = dish.id;
+      document.getElementById('dishEnName').value = dish.enName;
+      document.getElementById('dishJpName').value = dish.jpName || '';
+      document.getElementById('dishCategory').value = dish.category || categoriesData[0]?.id;
+      document.getElementById('dishPrice').value = dish.price;
+      document.getElementById('dishDesc').value = dish.desc || '';
+      document.getElementById('dishBadge').value = dish.badge || '';
+      document.getElementById('dishOrigin').value = dish.origin || '';
+      document.getElementById('dishIngredients').value = Array.isArray(dish.ingredients) ? dish.ingredients.join(', ') : '';
+      updateImagePreview(dish.image || './images/hero_tuna.jpg');
+
+      dishModal.classList.add('active');
+      modalBackdrop.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeModal = () => {
+      dishModal.classList.remove('active');
+      modalBackdrop.classList.remove('active');
+      document.body.style.overflow = '';
+    };
+
+    if (btnOpenAddModal) btnOpenAddModal.addEventListener('click', openAddModal);
+    if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+    if (modalCancelBtn) modalCancelBtn.addEventListener('click', closeModal);
+    if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
+
+    // Save dish
+    if (modalSaveBtn) {
+      modalSaveBtn.addEventListener('click', async () => {
+        const id = document.getElementById('dishId').value;
+        const enName = document.getElementById('dishEnName').value.trim();
+        const jpName = document.getElementById('dishJpName').value.trim() || enName;
+        const category = document.getElementById('dishCategory').value;
+        const price = parseFloat(document.getElementById('dishPrice').value);
+        const image = document.getElementById('dishImage').value.trim() || './images/hero_tuna.jpg';
+        const desc = document.getElementById('dishDesc').value.trim();
+        const badge = document.getElementById('dishBadge').value.trim();
+        const origin = document.getElementById('dishOrigin').value.trim();
+        const ingredientsRaw = document.getElementById('dishIngredients').value.trim();
+        const ingredients = ingredientsRaw ? ingredientsRaw.split(',').map(s => s.trim()).filter(Boolean) : [];
+
+        if (!enName) {
+          alert('Please enter dish name (English).');
+          return;
+        }
+        if (isNaN(price) || price < 0) {
+          alert('Please enter a valid price.');
+          return;
+        }
+        if (!desc) {
+          alert('Please enter a description for the dish.');
+          return;
+        }
+
+        if (id) {
+          const idx = dishesData.findIndex(d => d.id === id);
+          if (idx !== -1) {
+            dishesData[idx] = {
+              ...dishesData[idx],
+              enName,
+              jpName,
+              category,
+              price,
+              image,
+              desc,
+              badge: badge || dishesData[idx].badge,
+              origin: origin || dishesData[idx].origin,
+              ingredients: ingredients.length ? ingredients : dishesData[idx].ingredients
+            };
+            showToast(`✅ "${enName}" updated successfully!`);
+          }
+        } else {
+          const newId = 'dish-' + Date.now();
+          const newDish = {
+            id: newId,
+            category,
+            jpName,
+            enName,
+            sub: `${jpName} • ${origin || 'Chef Special'}`,
+            badge: badge || 'New Addition',
+            price,
+            image,
+            origin: origin || 'Akaoni Kitchen',
+            desc,
+            umami: 90,
+            richness: 85,
+            sweetness: 80,
+            ingredients: ingredients.length ? ingredients : ['Seasonal Fresh Catch', 'Artisanal Seasoning'],
+            pairing: 'Complements dry Japanese Junmai sake.'
+          };
+          dishesData.unshift(newDish);
+          showToast(`🎉 New dish "${enName}" added to Menu!`);
+        }
+
+        await persistDishes();
+        renderAdminDishes();
+        closeModal();
+      });
+    }
+
+    // Delete dish
+    window.deleteDish = async (id) => {
+      const dish = dishesData.find(d => d.id === id);
+      if (!dish) return;
+      if (confirm(`Remove "${dish.enName}" from the menu?`)) {
+        dishesData = dishesData.filter(d => d.id !== id);
+        await persistDishes();
+        renderAdminDishes();
+        showToast(`🗑️ "${dish.enName}" removed from menu.`, false);
+      }
+    };
+
+    // Reset Defaults
+    const btnResetDefaults = document.getElementById('btnResetDefaults');
+    if (btnResetDefaults) {
+      btnResetDefaults.addEventListener('click', async () => {
+        if (confirm('Reset dishes and categories to original defaults?')) {
+          dishesData = JSON.parse(JSON.stringify(defaultDishes));
+          categoriesData = [
+            { id: "nigiri", name: "Nigiri & Sashimi", kanji: "握り" },
+            { id: "signature", name: "Chef's Signatures", kanji: "特撰" },
+            { id: "robata", name: "Binchotan Robata", kanji: "炉端" },
+            { id: "izakaya", name: "Izakaya Small Plates", kanji: "居酒" },
+            { id: "sake", name: "Sake & Drinks", kanji: "酒" },
+            { id: "dessert", name: "Desserts", kanji: "甘味" }
+          ];
+          await persistDishes();
+          await persistCategories();
+          renderAdminDishes();
+          showToast('↺ Reset to original defaults');
+        }
+      });
+    }
+
+    // Run auth check on initial page load
+    checkAuth();
+  </script>
+</body>
+</html>

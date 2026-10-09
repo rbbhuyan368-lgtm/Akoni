@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Table Reservations | Akaoni 赤鬼 Carmel-by-the-Sea</title>
+  <meta name="description" content="Reserve an intimate sushi counter or dining table at Akaoni in Carmel-by-the-Sea. Limited to 20 seats.">
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👹</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Noto+Serif+JP:wght@400;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="tuna" class="light-subpage">
+  <div class="ambient-glow" id="ambientGlow"></div>
+
+  <!-- HEADER -->
+  <header class="site-header scrolled" id="siteHeader">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="hanko-seal">赤<br>鬼</div>
+        <div class="brand-names">
+          <span class="brand-en">AKAONI</span>
+          <span class="brand-sub">CARMEL-BY-THE-SEA • 鮨</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="menu.html" class="nav-link">Menu & Dishes</a>
+        <a href="philosophy.html" class="nav-link">Craft & Philosophy</a>
+        <a href="reserve.html" class="nav-link active">Reservations</a>
+        <a href="location.html" class="nav-link">Location & Hours</a>
+      </nav>
+
+      <div class="header-actions">
+
+
+        <button class="cart-btn" id="cartOpenBtn" title="View Selected Items">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-badge" id="cartCountBadge">0</span>
+        </button>
+
+        <a href="reserve.html" class="btn btn-primary reserve-cta-btn">
+          <span>Book Table</span>
+        </a>
+
+        <button class="mobile-toggle-btn" id="mobileMenuToggle" aria-label="Open Navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE DRAWER -->
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div class="mobile-nav-header">
+      <div class="brand-names">
+        <span class="brand-en">AKAONI 赤鬼</span>
+        <span class="brand-sub">CARMEL-BY-THE-SEA</span>
+      </div>
+      <button class="close-btn" id="mobileNavCloseBtn">&times;</button>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-link">Home</a>
+      <a href="menu.html" class="mobile-link">Menu & Food Items</a>
+      <a href="philosophy.html" class="mobile-link">Chef & Craft</a>
+      <a href="reserve.html" class="mobile-link active">Book a Table</a>
+      <a href="location.html" class="mobile-link">Location & Hours</a>
+    </div>
+    <div class="mobile-nav-footer">
+      <a href="reserve.html" class="btn btn-primary full-width">Book Table at Akaoni</a>
+      <div class="mobile-contact-pill">📞 (831) 620-1516 • 6th Ave, Carmel</div>
+    </div>
+  </div>
+
+  <main>
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="page-hero-container">
+        <div class="page-badge">
+          <span>ご予約 • INTIMATE 20-SEAT SANCTUARY</span>
+        </div>
+        <h1 class="page-title">Reserve Your Table at Akaoni</h1>
+        <p class="page-subtitle">
+          Because each cut of fish is prepared fresh for the day's guests, advance reservations are warmly recommended for both lunch and evening dinner service.
+        </p>
+      </div>
+    </section>
+
+    <!-- SEATING SELECTION & RESERVATION SECTION -->
+    <section class="reservation-section">
+      <div class="section-container">
+        <!-- Seating Options Preview Cards -->
+        <div class="seating-options-grid">
+          <div class="seating-card selected" id="seatCounterCard" onclick="selectSeatOption('Sushi Bar Counter (Front Row)')">
+            <div class="seating-icon">🍣</div>
+            <h4>Sushi Bar Counter</h4>
+            <p>Front-row seats directly facing the master. Watch every knife stroke and receive each piece straight from the board.</p>
+          </div>
+          <div class="seating-card" id="seatDiningCard" onclick="selectSeatOption('Intimate Dining Table')">
+            <div class="seating-icon">🕯️</div>
+            <h4>Intimate Dining Table</h4>
+            <p>Romantic candlelit tables tucked under warm washi paper lanterns. Ideal for couples and conversations.</p>
+          </div>
+          <div class="seating-card" id="seatTatamiCard" onclick="selectSeatOption('Traditional Tatami Corner')">
+            <div class="seating-icon">🎋</div>
+            <h4>Tatami Corner</h4>
+            <p>A tranquil, traditional low-table Japanese setting. Authentic ambience for private small groups.</p>
+          </div>
+        </div>
+
+        <!-- Main Reservation Card Wrapper -->
+        <div class="reservation-card-wrapper">
+          <div class="reservation-left-banner">
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+              <div class="hanko-seal-lg">赤鬼</div>
+              <span class="banner-sub">MICHELIN RECOGNIZED DINING</span>
+              <h3 class="banner-title">Dining Hours & Guidelines</h3>
+              
+              <div class="service-schedule">
+                <div class="schedule-row">
+                  <span class="day">Thursday – Saturday:</span>
+                  <span class="time">11:30 AM – 1:00 PM (Lunch)</span>
+                </div>
+                <div class="schedule-row">
+                  <span class="day">Tuesday – Saturday:</span>
+                  <span class="time">5:00 PM – 8:30 PM (Dinner)</span>
+                </div>
+                <div class="schedule-row">
+                  <span class="day">Sunday & Monday:</span>
+                  <span class="time closed">Closed (Fisherman Day)</span>
+                </div>
+              </div>
+
+              <div class="phone-booking">
+                <span>Prefer to book by phone?</span>
+                <a href="tel:8316201516" class="phone-link">📞 (831) 620-1516</a>
+                <small style="color: rgba(255,255,255,0.7); margin-top: 4px;">6th Ave (between Mission & San Carlos St), Carmel</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Interactive Booking Form -->
+          <div class="reservation-form-container">
+            <div class="form-header">
+              <h4>Book Your Seat</h4>
+              <p>Instant table confirmation • No upfront credit card required</p>
+            </div>
+
+            <form class="reservation-form" id="mainBookingForm">
+              <div class="form-group">
+                <label class="form-label">Number of Guests</label>
+                <div class="guests-selector" id="guestsSelector">
+                  <button type="button" class="guest-btn" data-val="1">1</button>
+                  <button type="button" class="guest-btn active" data-val="2">2</button>
+                  <button type="button" class="guest-btn" data-val="3">3</button>
+                  <button type="button" class="guest-btn" data-val="4">4</button>
+                  <button type="button" class="guest-btn" data-val="5">5</button>
+                  <button type="button" class="guest-btn" data-val="6">6+</button>
+                </div>
+                <input type="hidden" name="guests" id="guestsInput" value="2">
+              </div>
+
+              <div class="form-row">
+                <div class="form-group flex-1">
+                  <label class="form-label" for="resDate">Dining Date</label>
+                  <input type="date" id="resDate" class="form-input" required>
+                </div>
+                <div class="form-group flex-1">
+                  <label class="form-label" for="resSeating">Seating Preference</label>
+                  <select id="resSeating" class="form-input">
+                    <option value="Sushi Bar Counter (Front Row)">Sushi Bar Counter (Front Row)</option>
+                    <option value="Intimate Dining Table">Intimate Dining Table</option>
+                    <option value="Traditional Tatami Corner">Traditional Tatami Corner</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Select Seating Time</label>
+                <div class="time-slots-grid" id="timeSlotsGrid">
+                  <button type="button" class="time-slot-btn" data-time="11:30 AM">11:30 AM (Lunch)</button>
+                  <button type="button" class="time-slot-btn" data-time="12:15 PM">12:15 PM (Lunch)</button>
+                  <button type="button" class="time-slot-btn active" data-time="5:00 PM">5:00 PM</button>
+                  <button type="button" class="time-slot-btn" data-time="6:15 PM">6:15 PM</button>
+                  <button type="button" class="time-slot-btn" data-time="7:30 PM">7:30 PM</button>
+                  <button type="button" class="time-slot-btn" data-time="8:15 PM">8:15 PM</button>
+                </div>
+                <input type="hidden" name="time" id="timeInput" value="5:00 PM">
+              </div>
+
+              <div class="form-row">
+                <div class="form-group flex-1">
+                  <label class="form-label" for="resName">Full Name</label>
+                  <input type="text" id="resName" class="form-input" placeholder="e.g. Elena Rostova" required>
+                </div>
+                <div class="form-group flex-1">
+                  <label class="form-label" for="resPhone">Phone Number</label>
+                  <input type="tel" id="resPhone" class="form-input" placeholder="(831) 000-0000" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="resNotes">Special Requests (Omakase preference, Anniversaries, Dietary notes)</label>
+                <input type="text" id="resNotes" class="form-input" placeholder="e.g., Anniversary dinner, request Omakase tasting...">
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block submit-booking-btn">
+                Confirm Table Reservation at Akaoni
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Dining FAQ & Policies -->
+        <div class="directions-grid">
+          <div class="dir-card">
+            <h4>Seating & Grace Period</h4>
+            <p>Due to our intimate 20-seat capacity, tables are reserved for 90 minutes. We hold reservations for up to 15 minutes past the scheduled seating time before releasing to walk-in guests.</p>
+          </div>
+          <div class="dir-card">
+            <h4>Dietary Requests</h4>
+            <p>We take pride in honoring traditional Edomae sushi. Please inform us of any shellfish, soy, or gluten sensitivities when booking so the chef can curate your pieces thoughtfully.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="brand-logo">
+          <div class="hanko-seal">赤<br>鬼</div>
+          <div class="brand-names">
+            <span class="brand-en">AKAONI 赤鬼</span>
+            <span class="brand-sub">AUTHENTIC SUSHI & ROBATA</span>
+          </div>
+        </div>
+        <p class="footer-bio">
+          Carmel-by-the-Sea's revered Japanese culinary sanctuary. Dedicated to pristine fish, respectful craft, and intimate Edomae traditions.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Seasonal Menu</a></li>
+          <li><a href="philosophy.html">Chef & Craft</a></li>
+          <li><a href="reserve.html">Table Reservations</a></li>
+          <li><a href="location.html">Location & Hours</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Hours</h5>
+        <p><strong>Lunch:</strong> Thu – Sat: 11:30 AM – 1:00 PM</p>
+        <p><strong>Dinner:</strong> Tue – Sat: 5:00 PM – 8:30 PM</p>
+        <p><strong>Sun & Mon:</strong> Closed</p>
+      </div>
+
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <p>6th Ave, Carmel-by-the-Sea, CA 93921</p>
+        <p><a href="tel:8316201516" class="tel-link">(831) 620-1516</a></p>
+        <div class="footer-badge">Michelin Recognized</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Akaoni Japanese Restaurant. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- CONFIRMATION MODAL -->
+  <div class="drawer-backdrop" id="reserveModalBackdrop"></div>
+  <div class="reserve-modal" id="reserveModal" role="dialog" aria-modal="true">
+    <div class="reserve-modal-content">
+      <div class="reserve-modal-header">
+        <div class="brand-names">
+          <span class="brand-en">TABLE RESERVATION</span>
+          <span class="brand-sub">AKAONI 赤鬼 • CARMEL</span>
+        </div>
+        <button class="close-btn" id="reserveModalCloseBtn">&times;</button>
+      </div>
+      <div class="reserve-modal-body">
+        <div class="booking-confirmation-view" id="bookingConfirmationView">
+          <div class="conf-icon-wrap">🎉</div>
+          <h3 class="conf-title">Reservation Confirmed!</h3>
+          <p class="conf-sub">We look forward to welcoming you to our intimate sushi sanctuary.</p>
+          
+          <div class="conf-ticket">
+            <div class="ticket-header">
+              <span class="ticket-brand">赤鬼 AKAONI CARMEL</span>
+              <span class="ticket-ref" id="confRefCode">#AK-7842</span>
+            </div>
+            <div class="ticket-grid">
+              <div class="ticket-field"><small>Guest</small><strong id="confGuestName">Guest</strong></div>
+              <div class="ticket-field"><small>Party Size</small><strong id="confPartySize">2 Guests</strong></div>
+              <div class="ticket-field"><small>Date</small><strong id="confDate">Today</strong></div>
+              <div class="ticket-field"><small>Time</small><strong id="confTime">5:00 PM</strong></div>
+              <div class="ticket-field full"><small>Seating</small><strong id="confSeating">Sushi Bar Counter</strong></div>
+            </div>
+            <div class="ticket-footer">📍 6th Ave, Carmel-by-the-Sea • (831) 620-1516</div>
+          </div>
+          <button class="btn btn-primary btn-block" id="confDoneBtn">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="script.js"></script>
+  <script>
+    function selectSeatOption(optionName) {
+      const select = document.getElementById('resSeating');
+      if (select) select.value = optionName;
+      document.querySelectorAll('.seating-card').forEach(c => c.classList.remove('selected'));
+      if (optionName.includes('Counter')) document.getElementById('seatCounterCard').classList.add('selected');
+      if (optionName.includes('Table')) document.getElementById('seatDiningCard').classList.add('selected');
+      if (optionName.includes('Tatami')) document.getElementById('seatTatamiCard').classList.add('selected');
+    }
+  </script>
+</body>
+</html>

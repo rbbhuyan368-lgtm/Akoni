@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Akaoni 赤鬼 | Authentic Japanese Sushi & Robata | Carmel-by-the-Sea</title>
+  <meta name="description" content="Akaoni (赤鬼) in Carmel-by-the-Sea, California. Michelin Guide recognized authentic Japanese sushi sanctuary featuring pristine Bluefin Otoro, Hokkaido Uni, and Binchotan Robata.">
+  <meta name="keywords" content="Akaoni, Sushi Carmel, Japanese Restaurant Carmel by the Sea, Michelin Guide Sushi, Otoro, Hokkaido Uni, Robata">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Akaoni 赤鬼 | Artisanal Japanese Sushi & Robata">
+  <meta property="og:description" content="Michelin-recognized authentic Japanese dining in Carmel-by-the-Sea, California.">
+  <meta property="og:type" content="restaurant">
+  <meta property="og:image" content="./images/hero_tuna.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👹</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,600&family=Noto+Serif+JP:wght@400;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="tuna">
+
+  <!-- Ambient Sound Generator / Background Glow -->
+  <div class="ambient-glow" id="ambientGlow"></div>
+
+  <!-- HEADER NAVIGATION -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-container">
+      <!-- Brand Logo with Japanese Kanji Stamp -->
+      <a href="#hero" class="brand-logo" id="brandLogo">
+        <div class="hanko-seal" title="赤鬼 (Akaoni)">赤<br>鬼</div>
+        <div class="brand-names">
+          <span class="brand-en">AKAONI</span>
+          <span class="brand-sub">CARMEL-BY-THE-SEA • 鮨</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="menu.html" class="nav-link">Menu & Dishes</a>
+        <a href="philosophy.html" class="nav-link">Craft & Philosophy</a>
+        <a href="reserve.html" class="nav-link">Reservations</a>
+        <a href="location.html" class="nav-link">Location & Hours</a>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+
+
+        <!-- Cart / Orders Button -->
+        <button class="cart-btn" id="cartOpenBtn" title="View Selected Items" aria-label="View Cart">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-badge" id="cartCountBadge">0</span>
+        </button>
+
+
+        <!-- Table Booking CTA -->
+        <button class="btn btn-primary reserve-cta-btn" id="openReserveModalBtn">
+          <span>Book Table</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-toggle-btn" id="mobileMenuToggle" aria-label="Open Navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div class="mobile-nav-header">
+      <div class="brand-names">
+        <span class="brand-en">AKAONI 赤鬼</span>
+        <span class="brand-sub">CARMEL-BY-THE-SEA</span>
+      </div>
+      <button class="close-btn" id="mobileNavCloseBtn" aria-label="Close Navigation">&times;</button>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-link">Home</a>
+      <a href="menu.html" class="mobile-link">Menu & Food Items</a>
+      <a href="philosophy.html" class="mobile-link">Chef & Craft</a>
+      <a href="reserve.html" class="mobile-link">Book a Table</a>
+      <a href="location.html" class="mobile-link">Location & Hours</a>
+    </div>
+    <div class="mobile-nav-footer">
+      <button class="btn btn-primary full-width" id="mobileNavBookBtn">
+        Book Table at Akaoni
+      </button>
+      <div class="mobile-contact-pill">
+        📞 (831) 620-1516 • 6th Ave, Carmel
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- HERO SECTION (Featuring Fluid Wave Morphs, Dynamic Colors & Dish Transitions as in the Video) -->
+    <section class="hero-section" id="hero">
+      <!-- Soft Luxury Middle Gradient Atmosphere (Replaces Flat Black with Ambient Aura) -->
+      <div class="hero-center-atmosphere" id="heroCenterAtmosphere"></div>
+
+      <!-- Dynamic Organic Morphing Wave Shape in Background (Left & Right Shapes) -->
+      <div class="fluid-wave-container" id="fluidWaveContainer">
+        <svg class="fluid-wave-svg" viewBox="0 0 1000 800" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" class="grad-stop-1" stop-color="#ED6E72" />
+              <stop offset="70%" class="grad-stop-2" stop-color="#8C272B" />
+              <stop offset="100%" class="grad-stop-3" stop-color="#FAAF6D" />
+            </linearGradient>
+            <linearGradient id="rightWaveGradient" x1="100%" y1="100%" x2="0%" y2="0%">
+              <stop offset="0%" class="grad-stop-1" stop-color="#ED6E72" />
+              <stop offset="65%" class="grad-stop-2" stop-color="#8C272B" />
+              <stop offset="100%" class="grad-stop-3" stop-color="#FAAF6D" />
+            </linearGradient>
+            <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="30" result="blur" />
+              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+          </defs>
+          <!-- Left Fluid Wave Shape (Matches user marked boundary along left content) -->
+          <path id="fluidWavePath" class="wave-shape left-wave" d="M0,0 L480,0 C490,140 525,230 520,330 C515,440 430,500 390,570 C340,650 280,730 240,800 L0,800 Z" fill="url(#waveGradient)"></path>
+          <!-- Right Fluid Wave Shape (Matches user marked boundary under and around the dish) -->
+          <path id="heroRightShapePath" class="wave-shape right-wave" d="M720,800 C715,690 710,570 735,490 C760,420 850,340 1000,290 L1000,800 Z" fill="url(#rightWaveGradient)"></path>
+        </svg>
+      </div>
+
+      <!-- Hero Main Content Grid -->
+      <div class="hero-container">
+        <!-- Hero Left Column: Typography, Story, Switcher -->
+        <div class="hero-content">
+          <!-- Bold Dynamic Heading (like in Video) -->
+          <div class="hero-title-wrapper">
+            <span class="hero-kanji-watermark" id="heroKanjiWatermark">本鮪</span>
+            <h1 class="hero-title" id="heroTitle">
+              <span class="title-sub" id="heroSubtitle">ARTISANAL EDOMAE</span>
+              <span class="title-main" id="heroDishName">HON-MAGURO OTORO</span>
+            </h1>
+          </div>
+
+          <!-- Description -->
+          <p class="hero-description" id="heroDescription">
+            Pristine Bluefin Tuna belly sashimi and nigiri, meticulously aged for umami peak, brushed with chef's simmered nikiri shoyu, and crowned with 24k edible gold flakes.
+          </p>
+
+          <!-- Price & Culinary Highlights -->
+          <div class="hero-meta">
+            <div class="hero-price-pill">
+              <span class="price-label">Chef's Selection</span>
+              <span class="price-val" id="heroPrice">$36.00</span>
+            </div>
+            <div class="hero-tags" id="heroTags">
+              <span class="tag">Toyosu Direct</span>
+              <span class="tag">Binchotan Aged</span>
+              <span class="tag">Melt-in-Mouth</span>
+            </div>
+          </div>
+
+          <!-- Hero Action Buttons -->
+          <div class="hero-actions">
+            <button class="btn btn-primary btn-lg" id="heroOrderBtn">
+              <span>Add to Order</span>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="16"></line>
+                <line x1="8" y1="12" x2="16" y2="12"></line>
+              </svg>
+            </button>
+            <button class="btn btn-glass btn-lg" id="heroDetailsBtn">
+              <span>View Tasting Details</span>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Circular Thumbnail Selector (Matching the Video Animation!) -->
+          <div class="hero-selector-section">
+            <span class="selector-heading">SELECT CULINARY THEME & DISH:</span>
+            <div class="hero-thumbnails-row" id="heroThumbnailsRow">
+              <!-- Dish 1: Tuna (Crimson) -->
+              <button class="thumb-btn active" data-dish="tuna" data-theme="tuna" title="Hon-Maguro Otoro">
+                <div class="thumb-img-wrap">
+                  <img src="./images/hero_tuna.jpg" alt="Hon-Maguro Otoro" />
+                </div>
+                <span class="thumb-label">Otoro</span>
+              </button>
+
+              <!-- Dish 2: Salmon (Coral Peach) -->
+              <button class="thumb-btn" data-dish="salmon" data-theme="salmon" title="King Salmon Toro">
+                <div class="thumb-img-wrap">
+                  <img src="./images/hero_salmon.jpg" alt="King Salmon Toro" />
+                </div>
+                <span class="thumb-label">Salmon</span>
+              </button>
+
+              <!-- Dish 3: Uni & Ikura (Amber Gold) -->
+              <button class="thumb-btn" data-dish="uni" data-theme="uni" title="Hokkaido Uni & Ikura">
+                <div class="thumb-img-wrap">
+                  <img src="./images/hero_uni.jpg" alt="Hokkaido Uni & Ikura" />
+                </div>
+                <span class="thumb-label">Uni</span>
+              </button>
+
+              <!-- Dish 4: Matcha (Emerald Jade) -->
+              <button class="thumb-btn" data-dish="matcha" data-theme="matcha" title="Ceremonial Uji Matcha">
+                <div class="thumb-img-wrap">
+                  <img src="./images/hero_matcha.jpg" alt="Ceremonial Uji Matcha" />
+                </div>
+                <span class="thumb-label">Matcha</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Right Column: 3D Floating Dish Plate -->
+        <div class="hero-visual-col" id="heroVisualCol">
+
+          <!-- Main Artisanal Plate Wrapper -->
+          <div class="plate-stage" id="plateStage">
+            <div class="plate-ambient-shadow"></div>
+            <div class="plate-spinner" id="plateSpinner">
+              <img src="./images/hero_tuna.jpg" alt="Akaoni Signature Dish" id="heroPlateImage" class="plate-image">
+            </div>
+            <!-- Rotating subtle compass / Japanese circle border -->
+            <div class="plate-halo-ring"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HIGHLIGHT STATS TICKER (Picture 2 Flower Icons • Auto-scrolling Right-to-Left) -->
+    <section class="experience-strip" id="experienceStrip">
+      <div class="strip-marquee-wrapper">
+        <div class="strip-marquee-track">
+          <!-- Item 1 -->
+          <div class="strip-item">
+            <span class="strip-icon-flower" aria-hidden="true">
+              <svg class="flower-icon-svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <g fill="currentColor">
+                  <circle cx="12" cy="7" r="3.2"/>
+                  <circle cx="16.76" cy="10.45" r="3.2"/>
+                  <circle cx="14.94" cy="16.05" r="3.2"/>
+                  <circle cx="9.06" cy="16.05" r="3.2"/>
+                  <circle cx="7.24" cy="10.45" r="3.2"/>
+                </g>
+                <circle cx="12" cy="12" r="1.8" fill="var(--bg-surface)"/>
+              </svg>
+            </span>
+            <div class="strip-info">
+              <strong>Artisanal Edomae</strong>
+              <small>Fresh Handcrafted Daily in Carmel</small>
+            </div>
+          </div>
+          <div class="strip-separator"></div>
+          <!-- Item 2 -->
+          <div class="strip-item">
+            <span class="strip-icon-flower" aria-hidden="true">
+              <svg class="flower-icon-svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <g fill="currentColor">
+                  <circle cx="12" cy="7" r="3.2"/>
+                  <circle cx="16.76" cy="10.45" r="3.2"/>
+                  <circle cx="14.94" cy="16.05" r="3.2"/>
+                  <circle cx="9.06" cy="16.05" r="3.2"/>
+                  <circle cx="7.24" cy="10.45" r="3.2"/>
+                </g>
+                <circle cx="12" cy="12" r="1.8" fill="var(--bg-surface)"/>
+              </svg>
+            </span>
+            <div class="strip-info">
+              <strong>Kishu Binchotan</strong>
+              <small>Charcoal Flame Robata Skewers</small>
+            </div>
+          </div>
+          <div class="strip-separator"></div>
+          <!-- Item 3 -->
+          <div class="strip-item">
+            <span class="strip-icon-flower" aria-hidden="true">
+              <svg class="flower-icon-svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <g fill="currentColor">
+                  <circle cx="12" cy="7" r="3.2"/>
+                  <circle cx="16.76" cy="10.45" r="3.2"/>
+                  <circle cx="14.94" cy="16.05" r="3.2"/>
+                  <circle cx="9.06" cy="16.05" r="3.2"/>
+                  <circle cx="7.24" cy="10.45" r="3.2"/>
+                </g>
+                <circle cx="12" cy="12" r="1.8" fill="var(--bg-surface)"/>
+              </svg>
+            </span>
+            <div class="strip-info">
+              <strong>Carmel-by-the-Sea</strong>
+              <small>6th Ave & Mission St Sanctuary</small>
+            </div>
+          </div>
+          <div class="strip-separator"></div>
+          <!-- Item 4 -->
+          <div class="strip-item">
+            <span class="strip-icon-flower" aria-hidden="true">
+              <svg class="flower-icon-svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <g fill="currentColor">
+                  <circle cx="12" cy="7" r="3.2"/>
+                  <circle cx="16.76" cy="10.45" r="3.2"/>
+                  <circle cx="14.94" cy="16.05" r="3.2"/>
+                  <circle cx="9.06" cy="16.05" r="3.2"/>
+                  <circle cx="7.24" cy="10.45" r="3.2"/>
+                </g>
+                <circle cx="12" cy="12" r="1.8" fill="var(--bg-surface)"/>
+              </svg>
+            </span>
+            <div class="strip-info">
+              <strong>Monterey Wild Catch</strong>
+              <small>Daily Local Pacific Freshness</small>
+            </div>
+          </div>
+          <div class="strip-separator"></div>
+          <!-- Item 5 -->
+          <div class="strip-item">
+            <span class="strip-icon-flower" aria-hidden="true">
+              <svg class="flower-icon-svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <g fill="currentColor">
+                  <circle cx="12" cy="7" r="3.2"/>
+                  <circle cx="16.76" cy="10.45" r="3.2"/>
+                  <circle cx="14.94" cy="16.05" r="3.2"/>
+                  <circle cx="9.06" cy="16.05" r="3.2"/>
+                  <circle cx="7.24" cy="10.45" r="3.2"/>
+                </g>
+                <circle cx="12" cy="12" r="1.8" fill="var(--bg-surface)"/>
+              </svg>
+            </span>
+            <div class="strip-info">
+              <strong>Artisan Sake Pairing</strong>
+              <small>Curated Junmai Daiginjo Selection</small>
+            </div>
+          </div>
+          <div class="strip-separator"></div>
+          <!-- Item 6 -->
+          <div class="strip-item">
+            <span class="strip-icon-flower" aria-hidden="true">
+              <svg class="flower-icon-svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <g fill="currentColor">
+                  <circle cx="12" cy="7" r="3.2"/>
+                  <circle cx="16.76" cy="10.45" r="3.2"/>
+                  <circle cx="14.94" cy="16.05" r="3.2"/>
+                  <circle cx="9.06" cy="16.05" r="3.2"/>
+                  <circle cx="7.24" cy="10.45" r="3.2"/>
+                </g>
+                <circle cx="12" cy="12" r="1.8" fill="var(--bg-surface)"/>
+              </svg>
+            </span>
+            <div class="strip-info">
+              <strong>Michelin Guide Featured</strong>
+              <small>Carmel Culinary Destination</small>
+            </div>
+          </div>
+          <div class="strip-separator"></div>
+          <!-- Item 7 -->
+          <div class="strip-item">
+            <span class="strip-icon-flower" aria-hidden="true">
+              <svg class="flower-icon-svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <g fill="currentColor">
+                  <circle cx="12" cy="7" r="3.2"/>
+                  <circle cx="16.76" cy="10.45" r="3.2"/>
+                  <circle cx="14.94" cy="16.05" r="3.2"/>
+                  <circle cx="9.06" cy="16.05" r="3.2"/>
+                  <circle cx="7.24" cy="10.45" r="3.2"/>
+                </g>
+                <circle cx="12" cy="12" r="1.8" fill="var(--bg-surface)"/>
+              </svg>
+            </span>
+            <div class="strip-info">
+              <strong>Intimate 20 Counter Seats</strong>
+              <small>Chef-Directed Omakase Journey</small>
+            </div>
+          </div>
+          <div class="strip-separator"></div>
+
+          <!-- Seamless Duplicate for Continuous Infinite Loop -->
+          <div class="strip-item">
+            <span class="strip-icon-flower" aria-hidden="true">
+              <svg class="flower-icon-svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <g fill="currentColor">
+                  <circle cx="12" cy="7" r="3.2"/>
+                  <circle cx="16.76" cy="10.45" r="3.2"/>
+                  <circle cx="14.94" cy="16.05" r="3.2"/>
+                  <circle cx="9.06" cy="16.05" r="3.2"/>
+                  <circle cx="7.24" cy="10.45" r="3.2"/>
+                </g>
+                <circle cx="12" cy="12" r="1.8" fill="var(--bg-surface)"/>
+              </svg>
+            </span>
+            <div class="strip-info">
+              <strong>Artisanal Edomae</strong>
+              <small>Fresh Handcrafted Daily in Carmel</small>
+            </div>
+          </div>
+          <div class="strip-separator"></div>
+          <div class="strip-item">
+            <span class="strip-icon-flower" aria-hidden="true">
+              <svg class="flower-icon-svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <g fill="currentColor">
+                  <circle cx="12" cy="7" r="3.2"/>
+                  <circle cx="16.76" cy="10.45" r="3.2"/>
+                  <circle cx="14.94" cy="16.05" r="3.2"/>
+                  <circle cx="9.06" cy="16.05" r="3.2"/>
+                  <circle cx="7.24" cy="10.45" r="3.2"/>
+                </g>
+                <circle cx="12" cy="12" r="1.8" fill="var(--bg-surface)"/>
+              </svg>
+            </span>
+            <div class="strip-info">
+              <strong>Kishu Binchotan</strong>
+              <small>Charcoal Flame Robata Skewers</small>
+            </div>
+          </div>
+          <div class="strip-separator"></div>
+          <div class="strip-item">
+            <span class="strip-icon-flower" aria-hidden="true">
+              <svg class="flower-icon-svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <g fill="currentColor">
+                  <circle cx="12" cy="7" r="3.2"/>
+                  <circle cx="16.76" cy="10.45" r="3.2"/>
+                  <circle cx="14.94" cy="16.05" r="3.2"/>
+                  <circle cx="9.06" cy="16.05" r="3.2"/>
+                  <circle cx="7.24" cy="10.45" r="3.2"/>
+                </g>
+                <circle cx="12" cy="12" r="1.8" fill="var(--bg-surface)"/>
+              </svg>
+            </span>
+            <div class="strip-info">
+              <strong>Carmel-by-the-Sea</strong>
+              <small>6th Ave & Mission St Sanctuary</small>
+            </div>
+          </div>
+          <div class="strip-separator"></div>
+          <div class="strip-item">
+            <span class="strip-icon-flower" aria-hidden="true">
+              <svg class="flower-icon-svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <g fill="currentColor">
+                  <circle cx="12" cy="7" r="3.2"/>
+                  <circle cx="16.76" cy="10.45" r="3.2"/>
+                  <circle cx="14.94" cy="16.05" r="3.2"/>
+                  <circle cx="9.06" cy="16.05" r="3.2"/>
+                  <circle cx="7.24" cy="10.45" r="3.2"/>
+                </g>
+                <circle cx="12" cy="12" r="1.8" fill="var(--bg-surface)"/>
+              </svg>
+            </span>
+            <div class="strip-info">
+              <strong>Monterey Wild Catch</strong>
+              <small>Daily Local Pacific Freshness</small>
+            </div>
+          </div>
+          <div class="strip-separator"></div>
+          <div class="strip-item">
+            <span class="strip-icon-flower" aria-hidden="true">
+              <svg class="flower-icon-svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <g fill="currentColor">
+                  <circle cx="12" cy="7" r="3.2"/>
+                  <circle cx="16.76" cy="10.45" r="3.2"/>
+                  <circle cx="14.94" cy="16.05" r="3.2"/>
+                  <circle cx="9.06" cy="16.05" r="3.2"/>
+                  <circle cx="7.24" cy="10.45" r="3.2"/>
+                </g>
+                <circle cx="12" cy="12" r="1.8" fill="var(--bg-surface)"/>
+              </svg>
+            </span>
+            <div class="strip-info">
+              <strong>Artisan Sake Pairing</strong>
+              <small>Curated Junmai Daiginjo Selection</small>
+            </div>
+          </div>
+          <div class="strip-separator"></div>
+          <div class="strip-item">
+            <span class="strip-icon-flower" aria-hidden="true">
+              <svg class="flower-icon-svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <g fill="currentColor">
+                  <circle cx="12" cy="7" r="3.2"/>
+                  <circle cx="16.76" cy="10.45" r="3.2"/>
+                  <circle cx="14.94" cy="16.05" r="3.2"/>
+                  <circle cx="9.06" cy="16.05" r="3.2"/>
+                  <circle cx="7.24" cy="10.45" r="3.2"/>
+                </g>
+                <circle cx="12" cy="12" r="1.8" fill="var(--bg-surface)"/>
+              </svg>
+            </span>
+            <div class="strip-info">
+              <strong>Michelin Guide Featured</strong>
+              <small>Carmel Culinary Destination</small>
+            </div>
+          </div>
+          <div class="strip-separator"></div>
+          <div class="strip-item">
+            <span class="strip-icon-flower" aria-hidden="true">
+              <svg class="flower-icon-svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <g fill="currentColor">
+                  <circle cx="12" cy="7" r="3.2"/>
+                  <circle cx="16.76" cy="10.45" r="3.2"/>
+                  <circle cx="14.94" cy="16.05" r="3.2"/>
+                  <circle cx="9.06" cy="16.05" r="3.2"/>
+                  <circle cx="7.24" cy="10.45" r="3.2"/>
+                </g>
+                <circle cx="12" cy="12" r="1.8" fill="var(--bg-surface)"/>
+              </svg>
+            </span>
+            <div class="strip-info">
+              <strong>Intimate 20 Counter Seats</strong>
+              <small>Chef-Directed Omakase Journey</small>
+            </div>
+          </div>
+          <div class="strip-separator"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WARM EDITORIAL BODY CONTAINER (Picture 2 Exact Aesthetics, Colors, Shapes & Layout) -->
+    <div class="warm-editorial-canvas" id="editorialSanctuary">
+
+      <!-- 1. TOP CATEGORY PILL CARDS (5 Earthy-Tone Rounded Cards with Photos & Arrow Circles) -->
+      <section class="editorial-categories-strip" aria-label="Culinary Categories">
+        <div class="editorial-categories-grid">
+          <!-- Card 1: Terracotta -->
+          <div class="cat-card cat-card-terracotta" data-category="nigiri" role="button" tabindex="0">
+            <div class="cat-card-header">
+              <div class="cat-card-title">
+                <span>Edomae Sushi</span>
+                <small>江戸前寿司</small>
+              </div>
+              <button class="cat-card-btn" aria-label="Explore Edomae Sushi">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </div>
+            <div class="cat-card-image-wrap">
+              <img src="./images/hero_tuna.jpg" alt="Edomae Sushi" class="cat-card-img" loading="lazy">
+            </div>
+          </div>
+
+          <!-- Card 2: Deep Olive Green -->
+          <div class="cat-card cat-card-olive" data-category="robata" role="button" tabindex="0">
+            <div class="cat-card-header">
+              <div class="cat-card-title">
+                <span>Binchotan Robata</span>
+                <small>炭火炉端焼き</small>
+              </div>
+              <button class="cat-card-btn" aria-label="Explore Binchotan Robata">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </div>
+            <div class="cat-card-image-wrap">
+              <img src="./images/menu_wagyu.jpg" alt="Binchotan Robata" class="cat-card-img" loading="lazy">
+            </div>
+          </div>
+
+          <!-- Card 3: Warm Sand Beige -->
+          <div class="cat-card cat-card-sand" data-category="robata" role="button" tabindex="0">
+            <div class="cat-card-header">
+              <div class="cat-card-title">
+                <span>A5 Wagyu &amp; Skewers</span>
+                <small>宮崎牛炭火串</small>
+              </div>
+              <button class="cat-card-btn" aria-label="Explore Wagyu Skewers">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </div>
+            <div class="cat-card-image-wrap">
+              <img src="./images/menu_wagyu.jpg" alt="A5 Wagyu Skewers" class="cat-card-img" loading="lazy">
+            </div>
+          </div>
+
+          <!-- Card 4: Olive Green -->
+          <div class="cat-card cat-card-olive" data-category="signature" role="button" tabindex="0">
+            <div class="cat-card-header">
+              <div class="cat-card-title">
+                <span>Artisan Uni &amp; Bowls</span>
+                <small>特選生雲丹丼</small>
+              </div>
+              <button class="cat-card-btn" aria-label="Explore Uni & Bowls">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </div>
+            <div class="cat-card-image-wrap">
+              <img src="./images/hero_uni.jpg" alt="Artisan Uni Bowls" class="cat-card-img" loading="lazy">
+            </div>
+          </div>
+
+          <!-- Card 5: Warm Linen / Cream -->
+          <div class="cat-card cat-card-cream" data-category="sake" role="button" tabindex="0">
+            <div class="cat-card-header">
+              <div class="cat-card-title">
+                <span>Sake &amp; Pairings</span>
+                <small>日本酒・銘酒</small>
+              </div>
+              <button class="cat-card-btn" aria-label="Explore Sake Pairings">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </div>
+            <div class="cat-card-image-wrap">
+              <img src="./images/menu_sake.jpg" alt="Artisan Sake" class="cat-card-img" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. EDITORIAL PHILOSOPHY & CRAFT SECTION (Picture 2: Story + 4 Round Icons + Arched Oven Frame) -->
+      <section class="editorial-philosophy-section" id="philosophy">
+        <!-- Left Story Column -->
+        <div class="editorial-story-col">
+          <h2 class="editorial-story-title">
+            Japanese Gastronomy —<br>Born from Devotion <span class="doodle-heart">♡</span>
+          </h2>
+          <p class="editorial-story-desc">
+            When you step through our wooden noren into Akaoni Carmel, you enter an intimate sanctuary where ancient Edomae traditions honor the cold Pacific's freshest harvests. Toyosu Bluefin, Hokkaido Uni, aged akazu rice, and 1,000°C binchotan embers crafted for just 20 guests.
+          </p>
+
+          <!-- 4 Circular Outline Badges Row -->
+          <div class="editorial-feature-badges-row">
+            <div class="feature-badge-item">
+              <div class="feature-badge-icon" title="1000°C Kishu Binchotan">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M12 2c0 4.5-5 7-5 12a5 5 0 0 0 10 0c0-5-5-7.5-5-12z"/>
+                  <path d="M12 18a2 2 0 0 0 2-2c0-1.5-2-2.5-2-4-0 1.5-2 2.5-2 4a2 2 0 0 0 2 2z"/>
+                </svg>
+              </div>
+              <span class="feature-badge-label">1000°C Kishu Binchotan</span>
+            </div>
+
+            <div class="feature-badge-item">
+              <div class="feature-badge-icon" title="Toyosu & Pacific Harvest">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M2 16s4-8 12-8c4 0 8 3 8 3s-4 8-12 8c-4 0-8-3-8-3z"/>
+                  <circle cx="16" cy="12" r="1.5" fill="currentColor"/>
+                  <path d="M2 16l3-4-3-4"/>
+                </svg>
+              </div>
+              <span class="feature-badge-label">Toyosu &amp; Pacific Catch</span>
+            </div>
+
+            <div class="feature-badge-item">
+              <div class="feature-badge-icon" title="Ancient Edomae Akazu">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M12 3v18M12 3c-3 3-5 7-5 11 0 4 2.5 7 5 7M12 3c3 3 5 7 5 11 0 4-2.5 7-5 7"/>
+                </svg>
+              </div>
+              <span class="feature-badge-label">Ancient Edomae Akazu</span>
+            </div>
+
+            <div class="feature-badge-item">
+              <div class="feature-badge-icon" title="Intimate 20 Counter Seats">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <circle cx="8" cy="7" r="3.5"/>
+                  <circle cx="16" cy="7" r="3.5"/>
+                  <path d="M3 20c0-3.5 2.5-6 6-6s6 2.5 6 6M13 14.5c.8-.3 1.8-.5 3-.5 3.5 0 5.5 2.5 5.5 6"/>
+                </svg>
+              </div>
+              <span class="feature-badge-label">Intimate 20 Counter Seats</span>
+            </div>
+          </div>
+
+          <!-- Dark Green Pill Button -->
+          <a href="philosophy.html" class="btn-editorial-pill">
+            <span>Our Craft &amp; Values</span>
+            <span class="btn-arrow-circle">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </span>
+          </a>
+        </div>
+
+        <!-- Right Visual Frame: Oven Arch Shape + Rotating Seal + Calligraphic Stroke -->
+        <div class="editorial-visual-col">
+          <!-- Circular Artisanal Stamp Badge (Picture 2) -->
+          <div class="rotating-seal-badge" aria-hidden="true">
+            <svg viewBox="0 0 140 140" class="seal-svg">
+              <path id="sealTextPath" d="M 70, 70 m -50, 0 a 50,50 0 1,1 100,0 a 50,50 0 1,1 -100,0" fill="none"/>
+              <text class="seal-text">
+                <textPath href="#sealTextPath" startOffset="0%">
+                  • AKAONI SANCTUARY • CARMEL-BY-THE-SEA •
+                </textPath>
+              </text>
+              <circle cx="70" cy="70" r="26" fill="none" stroke="#ADA69C" stroke-width="1" stroke-dasharray="3,3"/>
+              <g transform="translate(58, 58)">
+                <circle cx="12" cy="7" r="3" fill="#552C16"/>
+                <circle cx="16.5" cy="10.5" r="3" fill="#552C16"/>
+                <circle cx="15" cy="16" r="3" fill="#552C16"/>
+                <circle cx="9" cy="16" r="3" fill="#552C16"/>
+                <circle cx="7.5" cy="10.5" r="3" fill="#552C16"/>
+                <circle cx="12" cy="12" r="2" fill="#F6F0E9"/>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Arched Photo Frame (Oven Arch Cutout) -->
+          <div class="editorial-arched-frame">
+            <img src="./images/chef_craft.jpg" alt="Master Sushi Chef at Akaoni Counter" class="editorial-arched-img">
+          </div>
+
+          <!-- Hand-Drawn Calligraphic Brush Swoosh Underneath -->
+          <svg class="editorial-swoosh-stroke" viewBox="0 0 300 60" fill="none" stroke="#23160D" stroke-width="2.5" stroke-linecap="round">
+            <path d="M 15,20 Q 90,55 210,40 T 290,15" />
+          </svg>
+        </div>
+      </section>
+
+      <!-- 3. POPULAR HITS / SIGNATURE HIGHLIGHTS SECTION (Center-Focus Sliding Animation) -->
+      <section class="editorial-hits-section" id="menu">
+        <div class="editorial-hits-header">
+          <div class="editorial-hits-header-left">
+            <h2 class="editorial-hits-title">
+              Try Our Signatures <span class="doodle-squiggle">~ ✎</span>
+            </h2>
+          </div>
+          <div class="signature-carousel-nav">
+            <button class="sig-nav-btn sig-prev" id="sigPrevBtn" title="Previous Signature Dish" aria-label="Previous">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <div class="sig-nav-dots" id="sigDotsContainer"></div>
+            <button class="sig-nav-btn sig-next" id="sigNextBtn" title="Next Signature Dish" aria-label="Next">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="signature-carousel-viewport" id="sigCarouselViewport">
+          <div class="editorial-hits-grid signature-carousel-track" id="homeFeaturedGrid">
+            <!-- Dish 1: Hon-Maguro Otoro -->
+            <div class="hit-dish-card" data-id="dish-1">
+              <div class="hit-dish-media">
+                <img src="./images/hero_tuna.jpg" alt="Hon-Maguro Otoro" class="hit-dish-img" loading="eager" decoding="async">
+              </div>
+              <div class="hit-dish-info">
+                <h3 class="hit-dish-name">Hon-Maguro Otoro</h3>
+                <span class="hit-dish-sub">本マグロ大トロ • Aged Bluefin</span>
+                <div class="hit-dish-footer">
+                  <span class="hit-dish-price">$36.00</span>
+                  <button class="hit-add-btn" title="Add to Order" data-id="dish-1" aria-label="Add Hon-Maguro Otoro">+</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dish 2: Hokkaido Uni & Ikura Bowl -->
+            <div class="hit-dish-card" data-id="dish-3">
+              <div class="hit-dish-media">
+                <img src="./images/hero_uni.jpg" alt="Hokkaido Uni & Ikura Bowl" class="hit-dish-img" loading="eager" decoding="async">
+              </div>
+              <div class="hit-dish-info">
+                <h3 class="hit-dish-name">Hokkaido Uni &amp; Ikura</h3>
+                <span class="hit-dish-sub">生雲丹イクラ丼 • Kelp-Fed Uni</span>
+                <div class="hit-dish-footer">
+                  <span class="hit-dish-price">$48.00</span>
+                  <button class="hit-add-btn" title="Add to Order" data-id="dish-3" aria-label="Add Hokkaido Uni">+</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dish 3: Miyazaki A5 Wagyu Robata -->
+            <div class="hit-dish-card" data-id="dish-4">
+              <div class="hit-dish-media">
+                <img src="./images/menu_wagyu.jpg" alt="Miyazaki A5 Wagyu Robata" class="hit-dish-img" loading="eager" decoding="async">
+              </div>
+              <div class="hit-dish-info">
+                <h3 class="hit-dish-name">Miyazaki A5 Wagyu</h3>
+                <span class="hit-dish-sub">宮崎牛炭火串 • 10-Yr Aged Tare</span>
+                <div class="hit-dish-footer">
+                  <span class="hit-dish-price">$42.00</span>
+                  <button class="hit-add-btn" title="Add to Order" data-id="dish-4" aria-label="Add Miyazaki Wagyu">+</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dish 4: King Salmon Aburi Toro -->
+            <div class="hit-dish-card" data-id="dish-2">
+              <div class="hit-dish-media">
+                <img src="./images/hero_salmon.jpg" alt="King Salmon Aburi Toro" class="hit-dish-img" loading="eager" decoding="async">
+              </div>
+              <div class="hit-dish-info">
+                <h3 class="hit-dish-name">King Salmon Aburi</h3>
+                <span class="hit-dish-sub">サーモントロ炙り • Wild Ora Belly</span>
+                <div class="hit-dish-footer">
+                  <span class="hit-dish-price">$28.00</span>
+                  <button class="hit-add-btn" title="Add to Order" data-id="dish-2" aria-label="Add King Salmon Aburi">+</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dish 5: Ceremonial Uji Matcha Mousse -->
+            <div class="hit-dish-card" data-id="dish-8">
+              <div class="hit-dish-media">
+                <img src="./images/hero_matcha.jpg" alt="Ceremonial Uji Matcha Mousse" class="hit-dish-img" loading="eager" decoding="async">
+              </div>
+              <div class="hit-dish-info">
+                <h3 class="hit-dish-name">Ceremonial Matcha</h3>
+                <span class="hit-dish-sub">宇治抹茶ムース • First-Flush Tea</span>
+                <div class="hit-dish-footer">
+                  <span class="hit-dish-price">$18.00</span>
+                  <button class="hit-add-btn" title="Add to Order" data-id="dish-8" aria-label="Add Matcha Mousse">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. SPECIAL PROMO / HAPPY HOURS BANNER (Picture 2: Peach Banner + -20% Badge + Leaf Art) -->
+      <section class="editorial-promo-section" id="reserve">
+        <div class="editorial-promo-card">
+          <!-- Left Content -->
+          <div class="promo-card-content">
+            <div class="promo-tag-badge">-20%</div>
+            <h3 class="promo-card-title">Happy Hours<br>Every Week!</h3>
+            <p class="promo-card-desc">
+              Thu – Sat: 11:30 AM – 1:00 PM (Lunch) • Tue – Sat: 5:00 PM – 8:30 PM (Dinner).<br>
+              Special seasonal omakase pairing flights &amp; instant counter reservation with no upfront deposit.
+            </p>
+            <button class="btn-promo-pill" id="promoReserveBtn" type="button">
+              <span>Reserve a Table</span>
+              <span class="btn-arrow-circle">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </span>
+            </button>
+          </div>
+
+          <!-- Right Visual: Interior Photo with Terracotta Organic Blob & Botanical Leaf Illustration -->
+          <div class="promo-card-visual">
+            <div class="promo-photo-wrap">
+              <img src="./images/restaurant_interior.jpg" alt="Akaoni Intimate Dining Room" class="promo-interior-img">
+            </div>
+            <!-- Overlapping Terracotta Blob -->
+            <div class="promo-organic-blob" aria-hidden="true"></div>
+            <!-- Overlapping Botanical Leaf Line Art Illustration (Matching Picture 2) -->
+            <svg class="promo-botanical-art" viewBox="0 0 160 160" fill="none" stroke="#23160D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M 140,150 C 120,110 80,70 30,50" />
+              <path d="M 50,58 C 45,40 55,25 70,25 C 75,40 65,55 50,58 Z" />
+              <path d="M 72,75 C 65,58 78,45 92,48 C 95,62 82,75 72,75 Z" />
+              <path d="M 94,96 C 85,82 100,70 115,75 C 116,90 105,98 94,96 Z" />
+              <path d="M 112,118 C 105,105 120,95 135,100 C 135,115 122,122 112,118 Z" />
+              <path d="M 30,50 C 20,42 18,28 28,24 C 36,32 35,45 30,50 Z" />
+            </svg>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /warm-editorial-canvas -->
+
+  </main>
+
+  <!-- 5. EDITORIAL FOOTER (Picture 2: Clean Off-White Aesthetic) -->
+  <footer class="editorial-site-footer">
+    <div class="footer-editorial-container">
+      <!-- Col 1: Brand & Social Circles -->
+      <div class="footer-brand-col">
+        <div class="footer-brand-row">
+          <div class="footer-hanko-seal">赤<br>鬼</div>
+          <div class="footer-brand-text">
+            <span class="footer-brand-name">AKAONI 赤鬼</span>
+            <span class="footer-brand-tagline">Artisanal Japanese Sushi &amp; Robata</span>
+          </div>
+        </div>
+        <div class="footer-social-pills">
+          <a href="tel:8316201516" class="social-circle-pill" title="Telephone" aria-label="Phone">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          </a>
+          <a href="https://instagram.com" target="_blank" class="social-circle-pill" title="Instagram" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="location.html" class="social-circle-pill" title="Location &amp; Maps" aria-label="Location">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          </a>
+          <a href="mailto:info@akaonicarmel.com" class="social-circle-pill" title="Email Us" aria-label="Email">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Col 2: Address -->
+      <div class="footer-info-col">
+        <div class="info-col-label">Address</div>
+        <p class="info-col-val">
+          6th Ave between Ocean &amp; 7th<br>
+          Carmel-by-the-Sea, CA 93921
+        </p>
+      </div>
+
+      <!-- Col 3: Phone & Hours -->
+      <div class="footer-info-col">
+        <div class="info-col-label">Telephone &amp; Hours</div>
+        <p class="info-col-val">
+          <a href="tel:8316201516" class="phone-link">+1 (831) 620-1516</a><br>
+          Daily 11:30 AM – 8:30 PM (Sun–Mon Closed)
+        </p>
+      </div>
+
+      <!-- Col 4: Action Button -->
+      <div class="footer-cta-col">
+        <button class="footer-outline-btn" id="footerBookBtn" type="button">
+          <span>Reserve Counter Seat</span>
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="footer-sub-bottom">
+      <div class="footer-sub-container">
+        <p>© 2026 Akaoni Japanese Restaurant • Carmel-by-the-Sea. Michelin Recognized Artisanal Dining.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- DISH DETAILS DRAWER (User requirement: "menu bare jeno card thake prottecta card theke jeno drawer open hoy") -->
+  <!-- Slides in from right on desktop, Bottom Sheet on mobile! -->
+  <div class="drawer-backdrop" id="dishDrawerBackdrop"></div>
+  <div class="dish-drawer" id="dishDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerDishTitle">
+    <!-- Mobile Drag Handle -->
+    <div class="drawer-drag-handle" id="drawerDragHandle"></div>
+
+    <div class="drawer-header">
+      <div class="drawer-category-badge" id="drawerCategoryBadge">Nigiri & Sashimi</div>
+      <button class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close Dish Details">&times;</button>
+    </div>
+
+    <div class="drawer-body" id="drawerBody">
+      <!-- Dish Image Banner -->
+      <div class="drawer-image-wrapper">
+        <img src="" alt="" id="drawerDishImage" class="drawer-dish-img">
+        <div class="drawer-image-gradient"></div>
+        <div class="drawer-kanji-stamp" id="drawerKanjiStamp">本鮪</div>
+      </div>
+
+      <!-- Dish Titles & Price -->
+      <div class="drawer-title-group">
+        <div class="drawer-sub-names">
+          <span class="drawer-jp-name" id="drawerJpName">本マグロ大トロ</span>
+          <span class="drawer-origin" id="drawerOrigin">Direct Toyosu Auction</span>
+        </div>
+        <div class="drawer-main-row">
+          <h3 class="drawer-title" id="drawerDishTitle">Hon-Maguro Otoro</h3>
+          <span class="drawer-price" id="drawerDishPrice">$36.00</span>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <p class="drawer-desc" id="drawerDishDesc">
+        Melt-in-your-mouth Bluefin tuna belly aged to perfection, torched with binchotan oak and finished with house nikiri shoyu and gold leaf.
+      </p>
+
+      <!-- Flavor Profile Radar -->
+      <div class="drawer-section">
+        <h5 class="drawer-sec-title">Flavor & Texture Profile</h5>
+        <div class="flavor-bars">
+          <div class="flavor-bar-item">
+            <span>Umami Depth</span>
+            <div class="bar-track"><div class="bar-fill" id="barUmami" style="width: 95%;"></div></div>
+          </div>
+          <div class="flavor-bar-item">
+            <span>Melting Richness</span>
+            <div class="bar-track"><div class="bar-fill" id="barRichness" style="width: 90%;"></div></div>
+          </div>
+          <div class="flavor-bar-item">
+            <span>Fresh Delicate Sweetness</span>
+            <div class="bar-track"><div class="bar-fill" id="barSweetness" style="width: 80%;"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ingredients & Highlights -->
+      <div class="drawer-section">
+        <h5 class="drawer-sec-title">Artisan Ingredients</h5>
+        <div class="drawer-tags-list" id="drawerIngredientsList">
+          <span class="d-tag">Bluefin Otoro</span>
+          <span class="d-tag">Akazu Red Vinegar Rice</span>
+          <span class="d-tag">Fresh Shizuoka Wasabi</span>
+          <span class="d-tag">Nikiri Sweet Shoyu</span>
+          <span class="d-tag">24K Edible Gold</span>
+        </div>
+      </div>
+
+      <!-- Chef's Pairing -->
+      <div class="drawer-section">
+        <div class="pairing-box">
+          <span class="pairing-icon">🍶</span>
+          <div class="pairing-text">
+            <strong>Chef's Recommended Pairing</strong>
+            <p id="drawerPairingText">Dassai 23 Junmai Daiginjo or Yamahai Reserve Sake.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quantity & Order Actions -->
+      <div class="drawer-footer-actions">
+        <div class="drawer-qty-control">
+          <button class="qty-btn" id="drawerQtyMinus">-</button>
+          <span class="qty-val" id="drawerQtyVal">1</span>
+          <button class="qty-btn" id="drawerQtyPlus">+</button>
+        </div>
+        <button class="btn btn-primary flex-1" id="drawerAddToCartBtn">
+          <span>Add to Order (<span id="drawerTotalCalc">$36.00</span>)</span>
+        </button>
+      </div>
+
+      <button class="btn btn-glass btn-block mt-2" id="drawerReserveThisBtn">
+        Book Table to Taste This Dish
+      </button>
+    </div>
+  </div>
+
+  <!-- TABLE BOOKING MODAL DRAWER (User requirement: "table book korar option rakhaba") -->
+  <div class="drawer-backdrop" id="reserveModalBackdrop"></div>
+  <div class="reserve-modal" id="reserveModal" role="dialog" aria-modal="true" aria-labelledby="modalBookingTitle">
+    <div class="reserve-modal-content">
+      <div class="reserve-modal-header">
+        <div class="brand-names">
+          <span class="brand-en">TABLE RESERVATION</span>
+          <span class="brand-sub">AKAONI 赤鬼 • CARMEL-BY-THE-SEA</span>
+        </div>
+        <button class="close-btn" id="reserveModalCloseBtn" aria-label="Close Reservation">&times;</button>
+      </div>
+
+      <div class="reserve-modal-body" id="reserveModalBody">
+        <!-- Confirmation View (Shown when booked) -->
+        <div class="booking-confirmation-view hidden" id="bookingConfirmationView">
+          <div class="conf-icon-wrap">🎉</div>
+          <h3 class="conf-title">Reservation Confirmed!</h3>
+          <p class="conf-sub">We eagerly look forward to welcoming you to our intimate sushi counter.</p>
+          
+          <div class="conf-ticket">
+            <div class="ticket-header">
+              <span class="ticket-brand">赤鬼 AKAONI CARMEL</span>
+              <span class="ticket-ref" id="confRefCode">#AK-7842</span>
+            </div>
+            <div class="ticket-grid">
+              <div class="ticket-field">
+                <small>Guest</small>
+                <strong id="confGuestName">Kenji Tanaka</strong>
+              </div>
+              <div class="ticket-field">
+                <small>Party Size</small>
+                <strong id="confPartySize">2 Guests</strong>
+              </div>
+              <div class="ticket-field">
+                <small>Date</small>
+                <strong id="confDate">Today</strong>
+              </div>
+              <div class="ticket-field">
+                <small>Time Slot</small>
+                <strong id="confTime">7:30 PM</strong>
+              </div>
+              <div class="ticket-field full">
+                <small>Seating</small>
+                <strong id="confSeating">Sushi Bar Counter</strong>
+              </div>
+            </div>
+            <div class="ticket-footer">
+              📍 6th Ave, Carmel-by-the-Sea • (831) 620-1516
+            </div>
+          </div>
+
+          <div class="conf-actions">
+            <button class="btn btn-primary btn-block" id="confDoneBtn">Done</button>
+            <button class="btn btn-glass btn-block mt-2" id="confPrintBtn">Save / Print Confirmation</button>
+          </div>
+        </div>
+
+        <!-- Form View -->
+        <div class="booking-modal-form-view" id="bookingModalFormView">
+          <form id="modalBookingForm">
+            <div class="modal-sec-title">1. Select Party & Seating</div>
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label class="form-label">Party Size</label>
+                <select id="modalGuests" class="form-input">
+                  <option value="1">1 Person (Solo Counter)</option>
+                  <option value="2" selected>2 Guests (Date / Duo)</option>
+                  <option value="3">3 Guests</option>
+                  <option value="4">4 Guests</option>
+                  <option value="5">5 Guests</option>
+                  <option value="6">6+ Guests (Call to verify)</option>
+                </select>
+              </div>
+              <div class="form-group flex-1">
+                <label class="form-label">Seating Area</label>
+                <select id="modalSeating" class="form-input">
+                  <option value="Sushi Counter">Sushi Bar (Chef Counter)</option>
+                  <option value="Dining Room">Dining Table</option>
+                  <option value="Tatami Booth">Tatami Corner</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="modal-sec-title mt-2">2. Date & Time</div>
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label class="form-label">Date</label>
+                <input type="date" id="modalDate" class="form-input" required>
+              </div>
+              <div class="form-group flex-1">
+                <label class="form-label">Time</label>
+                <select id="modalTime" class="form-input">
+                  <option value="11:30 AM (Lunch)">11:30 AM (Lunch)</option>
+                  <option value="12:15 PM (Lunch)">12:15 PM (Lunch)</option>
+                  <option value="5:00 PM (Dinner)" selected>5:00 PM (Dinner)</option>
+                  <option value="6:15 PM (Dinner)">6:15 PM (Dinner)</option>
+                  <option value="7:30 PM (Dinner)">7:30 PM (Dinner)</option>
+                  <option value="8:15 PM (Dinner)">8:15 PM (Dinner)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="modal-sec-title mt-2">3. Guest Details</div>
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label class="form-label">Name</label>
+                <input type="text" id="modalName" class="form-input" placeholder="Your Name" required>
+              </div>
+              <div class="form-group flex-1">
+                <label class="form-label">Phone</label>
+                <input type="tel" id="modalPhone" class="form-input" placeholder="(831) 000-0000" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Special Requests (Allergies, Omakase notes)</label>
+              <input type="text" id="modalNotes" class="form-input" placeholder="e.g., Birthday, Gluten-free, Chef's Omakase">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block mt-3">
+              Confirm Table Reservation
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CART / ORDER DRAWER -->
+  <div class="drawer-backdrop" id="cartDrawerBackdrop"></div>
+  <div class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="cartDrawerTitle">
+    <div class="cart-drawer-header">
+      <div class="cart-title-wrap">
+        <h3 id="cartDrawerTitle">Your Culinary Order</h3>
+        <span class="cart-count-text" id="cartDrawerSubtitle">0 items selected</span>
+      </div>
+      <button class="drawer-close-btn" id="cartCloseBtn" aria-label="Close Cart">&times;</button>
+    </div>
+
+    <div class="cart-drawer-body">
+      <div class="cart-items-list" id="cartItemsList">
+        <!-- Rendered dynamically -->
+        <div class="empty-cart-state" id="emptyCartState">
+          <div class="empty-icon">🍣</div>
+          <p>Your order bag is currently empty.</p>
+          <small>Explore our seasonal menu and select your favorite creations!</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-drawer-footer">
+      <div class="cart-calc-row">
+        <span>Subtotal</span>
+        <strong id="cartSubtotalVal">$0.00</strong>
+      </div>
+      <div class="cart-calc-row">
+        <span>Tax & Service (9.25%)</span>
+        <span id="cartTaxVal">$0.00</span>
+      </div>
+      <div class="cart-calc-row total-row">
+        <span>Estimated Total</span>
+        <strong id="cartTotalVal">$0.00</strong>
+      </div>
+      <button class="btn btn-primary btn-block checkout-btn" id="cartCheckoutBtn">
+        Place Dining Order / Send to Kitchen
+      </button>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- JAVASCRIPT -->
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+[
+  { "id": "nigiri", "name": "Nigiri & Sashimi", "kanji": "握り" },
+  { "id": "signature", "name": "Chef's Signatures", "kanji": "特撰" },
+  { "id": "robata", "name": "Binchotan Robata", "kanji": "炉端" },
+  { "id": "izakaya", "name": "Izakaya Small Plates", "kanji": "居酒" },
+  { "id": "sake", "name": "Sake & Drinks", "kanji": "酒" },
+  { "id": "dessert", "name": "Desserts", "kanji": "甘味" }
+]
